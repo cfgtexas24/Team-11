@@ -1,8 +1,7 @@
-import React from "react";
-import '../App.css'
+import '../App.css';
 import { Search, Download } from "lucide-react";
 
-const AdminDashboard: React.FC = () => {
+function AdminDashboard() {
   return (
     <div className="dashboard">
       {/* Client Reports Section */}

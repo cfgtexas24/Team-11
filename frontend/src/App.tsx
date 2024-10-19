@@ -4,6 +4,7 @@ import Login from './pages/login'
 import UserDashboard from './pages/UserDashboard'
 import User from './pages/User'
 import Navbar from './components/navbar'
+import AdminDashboard from './pages/admindash'
 
 function App() {
   return (
