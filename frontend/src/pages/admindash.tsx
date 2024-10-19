@@ -13,6 +13,18 @@ const AdminDashboard: React.FC = () => {
         </div>
       </div>
 
+      {/* Folders Section */}
+      <div className="folders">
+        {Array(4)
+          .fill(0)
+          .map((_, i) => (
+            <div key={i} className="folder-card">
+              <h2>Folder Name</h2>
+              <p>23 Files</p>
+            </div>
+          ))}
+      </div>
+
     </div>
   );
 };
