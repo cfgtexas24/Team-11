@@ -10,7 +10,9 @@ function AdminDashboard() {
       <div className="col-span-2 flex justify-between items-center">
         {/* Header section spans both columns, contains title and buttons */}
         
-        <h1>Client Reports</h1>
+        <h1 className="text-3xl font-bold">Client Reports</h1>
+         {/* Title with larger text and bold font */}
+         
         <div className="buttons">
           <button className="btn create">Create</button>
           <button className="btn upload">Upload</button>
