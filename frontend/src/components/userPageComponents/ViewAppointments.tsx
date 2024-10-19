@@ -43,6 +43,7 @@ function ViewAppointments() {
                             {appointments.length > 0 ? (
                                 <ul>
                                     {appointments.map((appointment) => (
+                                      <div className="appointments">
                                         <li key={appointment._id} className="mb-2">
                                             <strong>Clinic:</strong> {appointment.clinicName}<br />
                                             <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}<br />
@@ -50,6 +51,7 @@ function ViewAppointments() {
                                             <strong>Physician:</strong> {appointment.physician}<br />
                                             <strong>Type:</strong> {appointment.type}
                                         </li>
+                                      </div>
                                     ))}
                                 </ul>
                             ) : (
