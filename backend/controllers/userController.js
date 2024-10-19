@@ -1,4 +1,4 @@
-//const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 
@@ -31,7 +31,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({});
-
+    console.log(users)
     if (users) {
         res.status(200).json(users);
     } else {
@@ -40,14 +40,97 @@ const getUsers = asyncHandler(async (req, res) => {
     }
 });
 
+
 const addUser = asyncHandler(async (req, res) => {
-    const { name, email, password, phone, addressLine1, addressLine2, city, zipCode, height, weight, numberPastPregnancies, allergies, currentMedications, previousMedications, familyMedicalHistory, previousMedicalProcedures, state, dateOfBirth, role, middleIntial } = req.body;
+    const {
+        firstName,
+        lastName,
+        middleInitial,
+        email,
+        password,
+        phone,
+        addressLine1,
+        addressLine2,
+        city,
+        zipCode,
+        height,
+        weight,
+        numberPastPregnancies,
+        allergies,
+        currentMedications,
+        previousMedication,
+        familyMedicalHistory,
+        previousMedicalProcedures,
+        state,
+        dateOfBirth,
+        role,
+        homelessness,
+        preeclampsia,
+        postpartumdepression
+    } = req.body;
+
+    console.log(req.body);
+
+    // Check if the user with the same email already exists
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+        res.status(400);
+        throw new Error('User with this email already exists');
+    }
+
+    // Create a new user instance
+    const user = await User.create({
+        firstName,
+        lastName,
+        middleInitial,
+        email,
+        password,  // Ensure password is hashed if storing it directly
+        phone,
+        addressLine1,
+        addressLine2,
+        city,
+        zipCode,
+        height,
+        weight,
+        numberPastPregnancies,
+        allergies,
+        currentMedications,
+        previousMedication,
+        familyMedicalHistory,
+        previousMedicalProcedures,
+        state,
+        dateOfBirth,
+        role,
+        homelessness,
+        preeclampsia,
+        postpartumdepression
+    });
+
+    // Send back the created user info
+    res.status(201).json({
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,  // Role-based info
+        createdAt: user.createdAt,
+    });
+});
+
+module.exports = addUser;
+
+
+module.exports = {
+    loginUser, getUsers, addUser
+};
+
+
+const userChangeInformation = asyncHandler(async (req, res) => {
 
     console.log(req.body);
 
     const user = await User.findOne({ email });
-    
-    console.log(user)
 
     // If user exists and password matches
     if (user) {
@@ -62,8 +145,4 @@ const addUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Invalid credentials');
     }
-})
-
-module.exports = {
-    loginUser, getUsers,
-};
+});

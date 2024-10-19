@@ -44,7 +44,9 @@ function App() {
   };
 
   return (
+    <div>
     <BrowserRouter>
+      <Navbar/>
       <Routes>
         {/* Add the route for the User Information Page */}
         <Route
