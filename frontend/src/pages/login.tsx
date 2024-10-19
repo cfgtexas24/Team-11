@@ -28,10 +28,10 @@ const Login = () => {
                 localStorage.setItem('userId', data._id);
                 localStorage.setItem('role', data.role);
                 // Navigate to user page with role passed in state
-                if (data.role === "user"){
+                if (data.role === "user") {
                     navigate('/user-dashboard');
                 }
-                else if (data.role === "admin"){
+                else if (data.role === "admin") {
                     navigate('/admin-dashboard');
                 }
                 else if (data.role === "provider"){
