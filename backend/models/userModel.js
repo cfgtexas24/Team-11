@@ -18,11 +18,59 @@ const userSchema = mongoose.Schema({
         type: String,
         required: false,
     },
-    address: {
+    addressLine1: {
         type: String,
         required: false,
-      },
-      dateOfBirth: {
+    },
+    addressLine2: {
+        type: String,
+        required: false,
+    },
+    city: {
+        type: String,
+        required: false,
+    },
+    zipCode: {
+        type: String,
+        required: false,
+    },
+    outerHeight: {
+        type: String,
+        required: false,
+    },
+    weight: {
+        type: String,
+        required: false,
+    },
+    numberPastPregnancies: {
+        type: String,
+        required: false,
+    },
+    allergies: {
+        type: String,
+        required: false,
+    },
+    currentMedications: {
+        type: String,
+        required: false,
+    },
+    previousMedication: {
+        type: String,
+        required: false,
+    },
+    familyMedicalHistory: {
+        type: String,
+        required: false,
+    },
+    previousMedicalProcedures: {
+        type: String,
+        required: false,
+    },
+    state: {
+        type: String,
+        required: false,
+    },
+    dateOfBirth: {
         type: Date,
         required: false,
     },
@@ -38,6 +86,9 @@ const userSchema = mongoose.Schema({
         type: String,
         enum: ['user', 'admin', 'provider'],
         default: 'user',
+    },
+    middleInitial: {
+        type: String,
     },
         
 },{

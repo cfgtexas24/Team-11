@@ -1,10 +1,13 @@
 //setting up express js server
 
+//const dotenv = require('dotenv');
+//dotenv.config({ path: './.env' });  // Explicitly specify the path if needed
+
 const express = require('express')
 const colors = require('colors')
 const connectDB = require('./config/db')
 const dotenv = require('dotenv').config()
-const port = process.env.PORT | 8000
+const port = process.env.PORT || 8000
 //const {errorHandler} = require('./middleware/errorMiddleware')
 
 connectDB() //connect to the database
