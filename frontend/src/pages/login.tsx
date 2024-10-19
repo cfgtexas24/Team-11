@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { LocationState } from '@/types';
+import LoginNavbar from '@/components/LoginNavbar';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -49,6 +49,7 @@ const Login = () => {
 
     return (
         <div className="flex flex-col gap-8">
+            <LoginNavbar />
             <div className="flex flex-col gap-8">
                 <div>
                     <h1 className=" text-4xl font-bold">Login</h1>
