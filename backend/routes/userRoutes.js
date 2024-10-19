@@ -7,5 +7,6 @@ router.route('/login').post(loginUser)
 router.route('/add_user').post(addUser)
 router.route('/').get(getUsers)
 
+
 module.exports = router
 
