@@ -8,23 +8,23 @@ import Feedback from '@/components/userPageComponents/Feedback';
 function UserDashboard() {
     return (
         <>
-            <div className="h-screen w-screen" style={{ backgroundColor: '#F7EFEE' }}>
-                <div className="flex flex-wrap justify-between"> {/* Use flexbox for layout */}
-                    <div className="w-full md:w-1/2 p-2"> {/* Set width and padding */}
+            <div className="h-screen w-screen absolute left-0" style={{ backgroundColor: '#F7EFEE' }}>
+                <div className="flex flex-wrap justify-between"> 
+                    <div className="w-full md:w-1/2 p-2"> 
                         <ViewAppointments />
                     </div>
-                    <div className="w-full md:w-1/2 p-2"> {/* Set width and padding */}
+                    <div className="w-full md:w-1/2 p-2">
                         <ScheduleAppointments />
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-between mt-4"> {/* New row for the remaining components */}
-                    <div className="w-full md:w-1/3 p-2"> {/* Set width and padding */}
+                <div className="flex flex-wrap justify-between mt-4"> 
+                    <div className="w-full md:w-1/3 p-2"> 
                         <ViewLabReports />
                     </div>
-                    <div className="w-full md:w-1/3 p-2"> {/* Set width and padding */}
+                    <div className="w-full md:w-1/3 p-2">
                         <EducationalServices />
                     </div>
-                    <div className="w-full md:w-1/3 p-2"> {/* Set width and padding */}
+                    <div className="w-full md:w-1/3 p-2"> 
                         <Feedback />
                     </div>
                 </div>
