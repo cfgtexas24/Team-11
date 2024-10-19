@@ -28,7 +28,16 @@ const Login = () => {
                 localStorage.setItem('userId', data._id);
                 localStorage.setItem('role', data.role);
                 // Navigate to user page with role passed in state
-                navigate('/User', { state: { role: data.role } as LocationState });
+                if (data.role === "user") {
+                    navigate('/user-dashboard');
+                }
+                else if (data.role === "admin") {
+                    navigate('/admin-dashboard');
+                }
+                else if (data.role === "provider") {
+
+                }
+            
             } else {
                 throw new Error(data.message || 'Invalid credentials');
             }
@@ -38,7 +47,7 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col gap-8 items-start">
+        <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-8">
                 <div>
                     <h1 className=" text-4xl font-bold">Login</h1>

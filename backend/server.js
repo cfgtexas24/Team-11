@@ -25,8 +25,29 @@ app.use(cors({
 app.use(express.json()) //middleware to parse json
 app.use(express.urlencoded({extended: false})) //middleware to parse urlencoded data
 
-app.use('/api', require('./routes/userRoutes')) //use the goalRoutes.js file for any routes that start with /api/goals
+app.use('/api', require('./routes/userRoutes')) //use the userRoutes.js file for any routes that start with /api/users
+app.use('/api/user', require('./routes/appointmentRoutes')) 
 
 //app.use(errorHandler) //use the error handler middleware and overwrite the default error handler
 
 app.listen(port, () => console.log(`Server is running on port ${port}`))
+
+
+// // Set the folder containing the PDFs
+// const pdfFolder = path.join(__dirname, 'pdfs');
+
+// // Route to get the list of PDF files
+// app.get('/lab-reports', (req, res) => {
+//   fs.readdir(pdfFolder, (err, files) => {
+//     if (err) {
+//       return res.status(500).json({ error: 'Unable to fetch files' });
+//     }
+//     // Filter only PDF files
+//     const pdfFiles = files.filter(file => path.extname(file) === '.pdf');
+//     res.json(pdfFiles);
+//   });
+// });
+
+// // Route to serve the PDFs statically
+// app.use('/pdfs', express.static(pdfFolder));
+
