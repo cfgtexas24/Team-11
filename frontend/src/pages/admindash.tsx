@@ -50,21 +50,23 @@ function AdminDashboard() {
 
         <div className="space-y-4">
           {/* Vertical spacing between list items */}
-          
-        <div className="recent-list">
-          <div className="recent-item">
+
+          {/* List of recent files */}
+          <div className="flex justify-between p-4 bg-white rounded-lg">
+            {/* Flexbox to align filename and modification date horizontally, with padding, background color, and rounded corners */}
             <span>Patient_1_Report.pdf</span>
             <span>10/18/2024</span>
           </div>
-          <div className="recent-item">
+          {/* Repeating blocks for other files */}
+          <div className="flex justify-between p-4 bg-white rounded-lg">
             <span>Patient_2_Report.pdf</span>
             <span>10/12/2024</span>
           </div>
-          <div className="recent-item">
+          <div className="flex justify-between p-4 bg-white rounded-lg">
             <span>Patient_3_Report.pdf</span>
             <span>10/01/2024</span>
           </div>
-          <div className="recent-item">
+          <div className="flex justify-between p-4 bg-white rounded-lg">
             <span>Patient_4_Report.pdf</span>
             <span>10/09/2024</span>
           </div>
