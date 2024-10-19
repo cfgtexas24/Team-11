@@ -24,12 +24,36 @@ function ViewAppointments() {
                 .then((response) => response.json())
                 .then((data: Appointment[]) => {
                     setAppointments(data); // Set the appointments in state
+                    console.error('Successfully fetched appointments');
                 })
                 .catch((error) => {
                     console.error('Error fetching appointments:', error);
                 });
         }
     }, []);
+
+    // Function to handle appointment deletion
+    const handleDelete = (appointmentId: string) => {
+        const userId = localStorage.getItem('userId');
+        if (userId) {
+            fetch(`http://localhost:8000/api/user/${userId}/appointments/${appointmentId}`, {
+                method: 'DELETE',
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        // Remove the deleted appointment from state
+                        setAppointments((prevAppointments) =>
+                            prevAppointments.filter((appointment) => appointment._id !== appointmentId)
+                        );
+                    } else {
+                        console.error('Failed to delete appointment');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error deleting appointment:', error);
+                });
+        }
+    };
 
     return (
         <>
@@ -43,15 +67,23 @@ function ViewAppointments() {
                             {appointments.length > 0 ? (
                                 <ul>
                                     {appointments.map((appointment) => (
-                                      <div className="bg-[#F7EFEE] rounded-xl m-2 p-1">
-                                        <li key={appointment._id} className="mb-2">
-                                            <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}&emsp;
-                                            <strong>Time:</strong> {appointment.time}<br />
-                                            <strong>Clinic:</strong> {appointment.clinicName}<br />
-                                            <strong>Physician:</strong> {appointment.physician}<br />
-                                            <strong>Type:</strong> {appointment.type}
-                                        </li>
-                                      </div>
+                                        <div className="bg-[#F7EFEE] rounded-xl ml-2 relative" key={appointment._id}>
+                                            {/* Delete button (X icon) */}
+                                            <button
+                                              onClick={() => handleDelete(appointment._id)}
+                                              className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                                              style={{ fontSize: '12px', padding: '2px', lineHeight: '1' }} // Smaller font size, padding, and line height
+                                          >
+                                              &times;
+                                          </button>
+                                            <li className="mb-2 p-4">
+                                                <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}&emsp;
+                                                <strong>Time:</strong> {appointment.time}<br />
+                                                <strong>Clinic:</strong> {appointment.clinicName}<br />
+                                                <strong>Physician:</strong> {appointment.physician}<br />
+                                                <strong>Type:</strong> {appointment.type}
+                                            </li>
+                                        </div>
                                     ))}
                                 </ul>
                             ) : (
