@@ -64,8 +64,9 @@ const UserInformationPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // API call to your backend
+    const userId = localStorage.getItem('userId')
     try {
-      const response = await fetch(`http://localhost:8000/api/${storedUserInfo.email}`, {
+      const response = await fetch(`http://localhost:8000/api/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

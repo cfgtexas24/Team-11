@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/login';
 import UserDashboard from './pages/UserDashboard';
-// import User from './pages/User';
+import User from './pages/User';
 import Navbar from './components/navbar';
 import { useState, useEffect } from 'react';
 import UserInformationPage from './pages/UserInformationPage';
@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/users'); // Replace with your API endpoint
+        const response = await fetch('http://localhost:8000/api'); // Replace with your API endpoint
         const data = await response.json();
         setUsersList(data);
       } catch (error) {

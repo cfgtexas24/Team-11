@@ -29,7 +29,7 @@ type UserInfo = {
     homelessness: boolean;
     preeclampsia: boolean;
     postpartumdepression: boolean;
-  }
+}
 
 const Login = () => {
     const navigate = useNavigate();
@@ -94,7 +94,7 @@ const Login = () => {
                     navigate('/admin-dashboard');
                 }
                 else if (data.role === "provider"){
-
+                    navigate('/caregiver-dashboard')
                 }
                 // Navigate to user page with role passed in state
                 // navigate('/User', { state: { role: data.role } as LocationState });
