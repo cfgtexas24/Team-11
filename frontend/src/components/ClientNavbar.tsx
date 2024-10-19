@@ -16,16 +16,19 @@ const LoginNavbar = () => {
   };
 
   const handleLogout = () => {
-    // Handle logout logic
     navigate("/");
-    console.log("Logged out");
     setDropdownVisible(false);
+    console.log("Logged out");
   };
 
   const handlePersonalInfo = () => {
-    // Navigate to personal information page
     navigate("/user-info");
     setDropdownVisible(false);
+  };
+
+  // Function to navigate to home page when logo is clicked
+  const handleLogoClick = () => {
+    navigate("/user-dashboard"); // Navigate to the home page or any other page
   };
 
   return (
@@ -34,7 +37,16 @@ const LoginNavbar = () => {
         className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 lg:px-24 z-30 border"
         id="logo_address"
       >
-        <img src={abide_logo} alt="Abide Logo" width={160} height={80} />
+        {/* Logo that acts as a clickable element to navigate */}
+        <img
+          src={abide_logo}
+          alt="Abide Logo"
+          width={160}
+          height={80}
+          className="cursor-pointer" // Change cursor to pointer on hover
+          onClick={handleLogoClick} // Navigate to the home page on click
+        />
+
         <div className="relative"> {/* Wrap in a relative div to position the dropdown */}
           <Button
             className="bg-[#3A696E] w-28 flex items-center justify-center"
@@ -45,8 +57,7 @@ const LoginNavbar = () => {
 
           {/* Dropdown menu */}
           {dropdownVisible && (
-            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg z-40"
-            >
+            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg z-40">
               <ul>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handlePersonalInfo}>
                   Personal Information
