@@ -35,9 +35,8 @@ const Login = () => {
                     navigate('/admin-dashboard');
                 }
                 else if (data.role === "provider") {
-                    
+
                 }
-                navigate('/User', { state: { role: data.role } as LocationState });
             
             } else {
                 throw new Error(data.message || 'Invalid credentials');
