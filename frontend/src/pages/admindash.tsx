@@ -3,8 +3,9 @@ import { Search, Download } from "lucide-react";
 
 function AdminDashboard() {
   return (
-    <div className="dashboard">
-      {/* Client Reports Section */}
+    <div className="grid grid-cols-2 gap-6 p-6 bg-pink-100 rounded-xl">
+      {/* Main container: A grid with 2 columns, gap between elements, padding, background color, and rounded corners */}
+      {/* Header: Client Reports Section */}
       <div className="header">
         <h1>Client Reports</h1>
         <div className="buttons">
