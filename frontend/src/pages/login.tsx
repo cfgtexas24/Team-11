@@ -29,7 +29,7 @@ type UserInfo = {
     homelessness: boolean;
     preeclampsia: boolean;
     postpartumdepression: boolean;
-}
+  }
 
 const Login = () => {
     const navigate = useNavigate();

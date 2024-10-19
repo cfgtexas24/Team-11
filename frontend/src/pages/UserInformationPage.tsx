@@ -6,7 +6,7 @@ type UserInfo = {
   lastName: string;
   middleInitial?: string;
   email: string;
-  password: string; // Store hashed version
+  password: string;
   phone: string;
   addressLine1: string;
   addressLine2?: string;

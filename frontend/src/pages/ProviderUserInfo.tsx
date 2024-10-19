@@ -204,33 +204,83 @@
 import React, { useState, useEffect } from "react";
 import "./ProviderUserInfo.css";
 
+type UserInfo = [{
+  firstName: string;
+  lastName: string;
+  middleInitial?: string;
+  email: string;
+  password: string; // Store hashed version
+  phone: string;
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  zipCode: string;
+  height: number;
+  weight: number;
+  numberPastPregnancies: number;
+  allergies?: string;
+  currentMedications?: string;
+  previousMedication?: string;
+  familyMedicalHistory?: string;
+  previousMedicalProcedures?: string;
+  state: string;
+  dob: string;
+  role: string;
+  homelessness: boolean;
+  preeclampsia: boolean;
+  postpartumdepression: boolean;
+}]
+
 const ProviderUserInfo = () => {
-  const [formData, setFormData] = useState({
-    lastName: "",
-    firstName: "",
-    middleInitial: "",
-    dob: "",
-    phone: "",
-    email: "",
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    race: "",
-    ethnicity: "",
-    height: "",
-    weight: "",
-    pregnancies: "",
-    allergies: "",
-    currentMedications: "",
-    previousMedications: "",
-    familyHistory: "",
-    previousProcedures: "",
-    experiencedHomelessness: false,
-    historyOfPreeclampsia: false,
-    postpartumDepression: false,
-  });
+  const storedUserInfo = localStorage.get()
+
+  const getUsers = async () => {
+    //event.preventDefault();
+    
+    try {
+        const response = await fetch('http://localhost:8000/api', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
+        const data = await response.json();
+
+  
+
+    } catch (error) {
+        console.log(error)
+    } 
+  };
+  getUsers();
+
+const [formData, setFormData] = useState({
+  lastName: "",
+  firstName: "",
+  middleInitial: "",
+  dob: "",
+  phone: "",
+  email: "",
+  addressLine1: "",
+  addressLine2: "",
+  city: "",
+  state: "",
+  zipCode: "",
+  race: "",
+  ethnicity: "",
+  height: "",
+  weight: "",
+  pregnancies: "",
+  allergies: "",
+  currentMedications: "",
+  previousMedications: "",
+  familyHistory: "",
+  previousProcedures: "",
+  experiencedHomelessness: false,
+  historyOfPreeclampsia: false,
+  postpartumDepression: false,
+});
 
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   const [users, setUsers] = useState<{ id: string; name: string }[]>([]); // Adjusted to include user IDs and names
@@ -238,9 +288,15 @@ const ProviderUserInfo = () => {
   // Fetch users (dummy data for this example)
   useEffect(() => {
     const fetchUsers = async () => {
-      const userData = await fetch("/api/getUsers");
+      const userData = await fetch('http://localhost:8000/api', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+      });
       const usersList = await userData.json();
-      setUsers(usersList); // Assume usersList is an array of user objects with id and name
+      setUsers(usersList);
+      localStorage.setItem('allUsers', usersList)
     };
 
     fetchUsers();
@@ -305,8 +361,11 @@ const ProviderUserInfo = () => {
           ))}
         </select>
       </div>
-
-      {/* General Information Section */}
+      
+      
+    
+      {
+      if(){
       <div className="section">
         <label>Last Name</label>
         <input name="lastName" value={formData.lastName} onChange={handleChange} />
@@ -407,7 +466,7 @@ const ProviderUserInfo = () => {
       </div>
 
       <button type="submit">Save</button>
-    </form>
+    </form>}}
   );
 };
 
