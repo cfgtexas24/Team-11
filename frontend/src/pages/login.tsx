@@ -26,6 +26,7 @@ const Login = () => {
             if (response.ok) {
                 // Store _id in localStorage or sessionStorage for later use
                 localStorage.setItem('userId', data._id);
+                localStorage.setItem('role', data.role);
                 // Navigate to user page with role passed in state
                 navigate('/User', { state: { role: data.role } as LocationState });
             } else {
