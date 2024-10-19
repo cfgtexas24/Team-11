@@ -4,11 +4,15 @@ const { setAppointment, getAppointments } = require('../controllers/appointmentC
 const router = express.Router();
 
 // Route to create an appointment for a user
-router.post('/users/:userId/appointments', setAppointment);
+router.post('/:userId/appointments', setAppointment);
 
 // Route to get appointments for a user
-router.get('/users/:userId/appointments', getAppointments);
+router.get('/:userId/appointments', getAppointments);
 
+<<<<<<< HEAD
 
 
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 06c3916380e5f995d0076753eb284ee83a51f198

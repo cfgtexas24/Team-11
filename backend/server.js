@@ -25,7 +25,8 @@ app.use(cors({
 app.use(express.json()) //middleware to parse json
 app.use(express.urlencoded({extended: false})) //middleware to parse urlencoded data
 
-app.use('/api', require('./routes/userRoutes')) //use the goalRoutes.js file for any routes that start with /api/goals
+app.use('/api', require('./routes/userRoutes')) //use the userRoutes.js file for any routes that start with /api/users
+app.use('/api/user', require('./routes/appointmentRoutes')) 
 
 //app.use(errorHandler) //use the error handler middleware and overwrite the default error handler
 
