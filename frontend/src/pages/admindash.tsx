@@ -31,13 +31,15 @@ function AdminDashboard() {
       {/* Folder section: Displaying folder information */}
       <div className="grid grid-cols-2 gap-6">
         {/* Another grid with 2 columns to display folder information */}
-        
+
         {Array(4)
           .fill(0)
           .map((_, i) => (
-            <div key={i} className="folder-card">
-              <h2>Folder Name</h2>
-              <p>23 Files</p>
+            <div key={i} className="bg-teal-300 p-6 rounded-lg text-center">
+              {/* Each folder is represented by a card with padding, background color, rounded corners, and center-aligned text */}
+              <h2 className="text-2xl font-bold">Folder Name</h2>
+              <p className="mt-2 text-lg">23 Files</p>
+              {/* Placeholder text for folder name and file count */}
             </div>
           ))}
       </div>
