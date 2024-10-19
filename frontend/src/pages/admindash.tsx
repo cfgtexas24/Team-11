@@ -1,13 +1,17 @@
 import '../App.css';
 import { Search, Download } from "lucide-react"; // Importing icons from the lucide-react library
 import { useNavigate } from "react-router-dom";
+import DataTable from './DataTable';
 
 function AdminDashboard() {
   const navigate = useNavigate(); // Initialize
+  const handleUserInventoryClick = () => {
+    navigate('./DataTable');
+  }
   return (
     <div className="grid grid-cols-2 gap-6 p-6 bg-[rgb(247,239,238)] rounded-xl">
       {/* Main container: A grid with 2 columns, gap between elements, padding, background color, and rounded corners */}
-      
+
       {/* Header: Client Reports Section */}
       <div className="col-span-2 flex justify-between items-center">
         {/* Header section spans both columns, contains title and buttons */}
@@ -32,7 +36,6 @@ function AdminDashboard() {
       {/* Folder section: Displaying folder information */}
       <div className="grid grid-cols-2 gap-6">
         {/* Another grid with 2 columns to display folder information */}
-        
         {Array(4)
           .fill(0)
           .map((_, i) => (
@@ -52,7 +55,6 @@ function AdminDashboard() {
         
         <div className="space-y-4">
           {/* Vertical spacing between list items */}
-          
           {/* List of recent files */}
           <div className="flex justify-between p-4 bg-white rounded-lg">
             {/* Flexbox to align filename and modification date horizontally, with padding, background color, and rounded corners */}
@@ -96,6 +98,13 @@ function AdminDashboard() {
         {/* Download icon placed at the bottom-right of the image */}
       </div>
 
+      {/* User Inventory Button */}
+      <button 
+        className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow"
+        onClick={handleUserInventoryClick} // Define this function for click handling
+      >
+        User Inventory
+      </button>
 
       {/* Comments Section */}
       <div className="col-span-2 flex flex-col">
