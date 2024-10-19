@@ -60,6 +60,13 @@ const AdminDashboard: React.FC = () => {
         <Download className="download-icon" />
       </div>
 
+      {/* Comments Section */}
+      <div className="comments">
+        <h2>Comments</h2>
+        <textarea placeholder="Enter your comments here..." />
+        <button className="btn submit">Submit</button>
+      </div>
+
     </div>
   );
 };
