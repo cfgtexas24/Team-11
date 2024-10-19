@@ -1,16 +1,20 @@
-import { useState } from 'react'
 import '../App.css'
+import ViewAppointments from '@/components/ViewAppointments'
+import ScheduleAppointments from '@/components/userPageComponents/ScheduleAppointments'
 
 function UserDashboard() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
+      <div className="h-screen w-screen" style={{ backgroundColor: '#F7EFEE' }}>
+        <p>dashboard</p>
+        <ViewAppointments/>
+      </div>
       <div>
-        <p>Dashboard</p>
+      <ScheduleAppointments/>
       </div>
     </>
-  )
+  );
 }
 
 export default UserDashboard
