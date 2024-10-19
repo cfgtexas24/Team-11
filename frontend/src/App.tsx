@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from './pages/login'
 import UserDashboard from './pages/UserDashboard'
+import User from './pages/User'
 import Navbar from './components/navbar'
 
 function App() {
@@ -10,8 +11,10 @@ function App() {
     <BrowserRouter>
       <Navbar/>
       <Routes>
-        <Route path="/login" element={<Login/>} />
-        <Route path="/user-dashboard" element={<UserDashboard/>}/>
+        <Route path="/login" element={<Login />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path='/user' element={<User />}/>
+          <Route path="/" element={<Login />} />
       </Routes>
     </BrowserRouter>
     </div>
