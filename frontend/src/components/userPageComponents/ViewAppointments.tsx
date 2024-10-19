@@ -33,7 +33,7 @@ function ViewAppointments() {
 
     return (
         <>
-            <div className="justify-around rounded-lg shadow-md" style={{ backgroundColor: '#F0DCDA' }}>
+            <div className="justify-around rounded-lg shadow-md p-2 min-h[70%]" style={{ backgroundColor: '#F0DCDA' }}>
                 <div className="flex flex-row">
                     {/* Appointments List */}
                     <div className="text-left w-1/2">
@@ -43,7 +43,7 @@ function ViewAppointments() {
                             {appointments.length > 0 ? (
                                 <ul>
                                     {appointments.map((appointment) => (
-                                      <div className="bg-[#F7EFEE] rounded-xl ml-2">
+                                      <div className="bg-[#F7EFEE] rounded-xl m-2 p-1">
                                         <li key={appointment._id} className="mb-2">
                                             <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}&emsp;
                                             <strong>Time:</strong> {appointment.time}<br />

@@ -13,7 +13,7 @@ function Feedback() {
 
   return (
     <>
-      <div className="justify-around rounded-lg shadow-md" style={{ backgroundColor: '#F0DCDA' }}>
+      <div className="justify-around rounded-lg shadow-md h-100" style={{ backgroundColor: '#F0DCDA' }}>
         <div className="flex flex-row">
           <div className="text-left p-3">
             <h1>Feedback</h1>
