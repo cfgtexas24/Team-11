@@ -34,7 +34,7 @@ const LoginNavbar = () => {
   return (
     <div>
       <header
-        className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 lg:px-24 z-30 border"
+        className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 lg:px-8 z-30 border"
         id="logo_address"
       >
         {/* Logo that acts as a clickable element to navigate */}
