@@ -9,7 +9,7 @@ import ClientNavbar from '@/components/ClientNavbar';
 function UserDashboard() {
     return (
         <>
-            <div className="bg-[#F7EFEE]">
+            <div className="bg-[#F7EFEE] rounded-xl">
                 <div>
                     <ClientNavbar />
                 </div>

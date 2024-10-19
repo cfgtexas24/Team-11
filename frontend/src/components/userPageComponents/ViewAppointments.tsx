@@ -33,7 +33,7 @@ function ViewAppointments() {
 
     return (
         <>
-            <div className="justify-around rounded-lg shadow-md p-2 min-h[70%]" style={{ backgroundColor: '#F0DCDA' }}>
+            <div className="justify-around rounded-lg shadow-md p-4 min-h[70%]" style={{ backgroundColor: '#F0DCDA' }}>
                 <div className="flex flex-row">
                     {/* Appointments List */}
                     <div className="text-left w-1/2">
