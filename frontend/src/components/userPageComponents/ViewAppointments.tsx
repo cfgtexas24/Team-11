@@ -61,7 +61,7 @@ function ViewAppointments() {
                     </div>
 
                     {/* Calendar */}
-                    <div>
+                    <div className="ml-auto">
                         <Calendar
                             mode="single"
                             selected={date}

@@ -1,0 +1,27 @@
+/* Add this to your CSS file */
+#google_translate_element {
+    background-color: pink; /* Change the background color to pink */
+    border-radius: 5px; /* Optional: Add some rounded corners */
+    padding: 10px; /* Optional: Add some padding for better spacing */
+    z-index: 100; /* Ensure it stays on top of other elements */
+  }
+  
+  /* Add this to your CSS file */
+#google_translate_element {
+    transform: scale(0.8); /* Scale down the dropdown */
+    transform-origin: top left; /* Adjust the origin to maintain positioning */
+    margin: 0; /* Remove default margin */
+  }
+  
+  /* Optional: Adjust font size of the dropdown */
+  body .skiptranslate {
+    font-size: 12px; /* Change this to your desired font size */
+  }
+  
+  /* Optional: Style the dropdown container */
+  body .goog-te-gadget {
+    background-color: pink; /* Pink background for the dropdown */
+    padding: 5px; /* Optional padding */
+    border-radius: 5px; /* Optional rounded corners */
+  }
+  
