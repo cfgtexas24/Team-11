@@ -31,7 +31,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({});
-
+    console.log(users)
     if (users) {
         res.status(200).json(users);
     } else {
@@ -124,3 +124,25 @@ module.exports = addUser;
 module.exports = {
     loginUser, getUsers, addUser
 };
+
+
+const userChangeInformation = asyncHandler(async (req, res) => {
+
+    console.log(req.body);
+
+    const user = await User.findOne({ email });
+
+    // If user exists and password matches
+    if (user) {
+        // Return the user's info without token
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,  // Send back their role for role-based content
+        });
+    } else {
+        res.status(400);
+        throw new Error('Invalid credentials');
+    }
+});
