@@ -2,48 +2,73 @@ import React, { useState } from "react";
 import "./UserInformationPage.css";
 import ClientNavbar from '@/components/ClientNavbar';
 
-const UserInformationPage = () => {
-  const [formData, setFormData] = useState({
-    lastName: "",
-    firstName: "",
-    middleInitial: "",
-    dob: "",
-    phone: "",
-    email: "",
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    race: "",
-    ethnicity: "",
-    height: "",
-    weight: "",
-    pregnancies: "",
-    allergies: "",
-    currentMedications: "",
-    previousMedications: "",
-    familyHistory: "",
-    previousProcedures: "",
-    experiencedHomelessness: false, // Changed to boolean
-    historyOfPreeclampsia: false, // Changed to boolean
-    postpartumDepression: false, // Changed to boolean
-  });
+type UserInfo = {
+  firstName: string;
+  lastName: string;
+  middleInitial?: string;
+  email: string;
+  password: string;
+  phone: string;
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  zipCode: string;
+  height: number;
+  weight: number;
+  numberPastPregnancies: number;
+  allergies?: string;
+  currentMedications?: string;
+  previousMedication?: string;
+  familyMedicalHistory?: string;
+  previousMedicalProcedures?: string;
+  state: string;
+  dob: string;
+  role: string;
+  homelessness: boolean;
+  preeclampsia: boolean;
+  postpartumdepression: boolean;
+}
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value, // Handle checkbox values for booleans
-    });
-  };
+const UserInformationPage = () => {
+  
+  // Retrieve userInfo from localStorage and parse it
+  const storedUserInfo = localStorage.getItem('userInfo');
+  const initialFormData: UserInfo = storedUserInfo 
+    ? JSON.parse(storedUserInfo) 
+    : {
+        firstName: "",
+        lastName: "",
+        middleInitial: "",
+        email: "",
+        phone: "",
+        addressLine1: "",
+        addressLine2: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        dob: "",
+        experiencedHomelessness: false,
+        historyOfPreeclampsia: false,
+        postpartumDepression: false,
+      };
+
+      const [formData, setFormData] = useState<UserInfo>(initialFormData);
+
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value, type, checked } = e.target;
+        setFormData({
+          ...formData,
+          [name]: type === "checkbox" ? checked : value,
+        });
+      };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // API call to your backend
+    const userId = localStorage.getItem('userId')
     try {
-      const response = await fetch("/api/saveUserInformation", {
-        method: "POST",
+      const response = await fetch(`http://localhost:8000/api/${userId}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -95,11 +120,15 @@ const UserInformationPage = () => {
           <label>State</label>
           <input name="state" value={formData.state} onChange={handleChange} />
 
+<<<<<<< HEAD
           <label>Zip Code</label>
           <input name="zipCode" value={formData.zipCode} onChange={handleChange} />
 
           <label>Race</label>
           <input name="race" value={formData.race} onChange={handleChange} />
+=======
+      </div>
+>>>>>>> userInfo
 
           <label>Ethnicity</label>
           <input name="ethnicity" value={formData.ethnicity} onChange={handleChange} />
@@ -112,8 +141,13 @@ const UserInformationPage = () => {
           <label>Height</label>
           <input name="height" value={formData.height} onChange={handleChange} />
 
+<<<<<<< HEAD
           <label>Weight</label>
           <input name="weight" value={formData.weight} onChange={handleChange} />
+=======
+        <label># of Pregnancies</label>
+        <input name="pregnancies" value={formData.numberPastPregnancies} onChange={handleChange} />
+>>>>>>> userInfo
 
           <label># of Pregnancies</label>
           <input name="pregnancies" value={formData.pregnancies} onChange={handleChange} />
@@ -121,6 +155,7 @@ const UserInformationPage = () => {
           <label>Allergies</label>
           <input name="allergies" value={formData.allergies} onChange={handleChange} />
 
+<<<<<<< HEAD
           <label>Current Medications</label>
           <input name="currentMedications" value={formData.currentMedications} onChange={handleChange} />
 
@@ -129,11 +164,23 @@ const UserInformationPage = () => {
 
           <label>Family Medical History</label>
           <input name="familyHistory" value={formData.familyHistory} onChange={handleChange} />
+=======
+        <label>Previous Medications</label>
+        <input name="previousMedications" value={formData.previousMedication} onChange={handleChange} />
+
+        <label>Family Medical History</label>
+        <input name="familyHistory" value={formData.familyMedicalHistory} onChange={handleChange} />
+
+        <label>Previous Medical Procedures</label>
+        <input name="previousProcedures" value={formData.previousMedicalProcedures} onChange={handleChange} />
+      </div>
+>>>>>>> userInfo
 
           <label>Previous Medical Procedures</label>
           <input name="previousProcedures" value={formData.previousProcedures} onChange={handleChange} />
         </div>
 
+<<<<<<< HEAD
         <h3>Additional Information</h3>
 
         {/* Additional Information Section */}
@@ -166,6 +213,34 @@ const UserInformationPage = () => {
         <button type="submit">Save</button>
       </form>
     </div>
+=======
+      {/* Additional Information Section */}
+      <div className="section">
+        <label>Experienced Homelessness</label>
+        <input
+          name="experiencedHomelessness"
+          type="checkbox"
+          checked={formData.homelessness}
+          onChange={handleChange}
+        />
+
+        <label>History of Preeclampsia</label>
+        <input
+          name="historyOfPreeclampsia"
+          type="checkbox"
+          checked={formData.preeclampsia}
+          onChange={handleChange}
+        />
+
+        <label>Postpartum Depression</label>
+        <input
+          name="postpartumDepression"
+          type="checkbox"
+          checked={formData.postpartumdepression}
+          onChange={handleChange}
+        />
+      </div>
+>>>>>>> userInfo
 
   );
 };

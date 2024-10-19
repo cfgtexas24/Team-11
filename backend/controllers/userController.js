@@ -19,10 +19,62 @@ const loginUser = asyncHandler(async (req, res) => {
         // Return the user's info without token
         res.json({
             _id: user._id,
-            name: user.name,
+            firstName: user.firstName,
+            //email: user.email,
+            //role: user.role,  // Send back their role for role-based content
+
+            lastName: user.lastName,
+            middleInitial: user.middleInitial,
             email: user.email,
-            role: user.role,  // Send back their role for role-based content
+            phone: user.phone,
+            addressLine1: user.addressLine1,
+            addressLine2: user.addressLine2,
+            city: user.city,
+            zipCode: user.zipCode,
+            height: user.height,
+            weight: user.weight,
+            numberPastPregnancies: user.numberPastPregnancies,
+            allergies: user.allergies,
+            currentMedications: user.currentMedications,
+            previousMedication: user.previousMedication,
+            familyMedicalHistory: user.familyMedicalHistory,
+            previousMedicalProcedures: user.previousMedicalProcedures,
+            state: user.state,
+            dateOfBirth: user.dateOfBirth,
+            role: user.role,
+            homelessness: user.homelessness,
+            preeclampsia: user.preeclampsia,
+            postpartumdepression: user.postpartumdepression
+
         });
+
+        localStorage.setItem('userInfo', {_id: user._id,
+            firstName: user.firstName,
+            //email: user.email,
+            //role: user.role,  // Send back their role for role-based content
+
+            lastName: user.lastName,
+            middleInitial: user.middleInitial,
+            email: user.email,
+            phone: user.phone,
+            addressLine1: user.addressLine1,
+            addressLine2: user.addressLine2,
+            city: user.city,
+            zipCode: user.zipCode,
+            height: user.height,
+            weight: user.weight,
+            numberPastPregnancies: user.numberPastPregnancies,
+            allergies: user.allergies,
+            currentMedications: user.currentMedications,
+            previousMedication: user.previousMedication,
+            familyMedicalHistory: user.familyMedicalHistory,
+            previousMedicalProcedures: user.previousMedicalProcedures,
+            state: user.state,
+            dateOfBirth: user.dateOfBirth,
+            role: user.role,
+            homelessness: user.homelessness,
+            preeclampsia: user.preeclampsia,
+            postpartumdepression: user.postpartumdepression})
     } else {
         res.status(400);
         throw new Error('Invalid credentials');
@@ -122,12 +174,12 @@ const addUser = asyncHandler(async (req, res) => {
 // Update user information by ID
 const updateUser = asyncHandler(async (req, res) => {
     const { id } = req.params; // User ID from route parameters
+    console.log(id)
     const {
         firstName,
         lastName,
         middleInitial,
         email,
-        password, // Optional: only update if provided
         phone,
         addressLine1,
         addressLine2,
@@ -151,6 +203,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
     // Find the user by ID
     const user = await User.findById(id);
+    console.log(user)
     if (!user) {
         res.status(404);
         throw new Error('User not found');
@@ -161,7 +214,6 @@ const updateUser = asyncHandler(async (req, res) => {
     user.lastName = lastName || user.lastName;
     user.middleInitial = middleInitial || user.middleInitial;
     user.email = email || user.email;
-    if (password) user.password = password; // Ensure password is hashed before storing
     user.phone = phone || user.phone;
     user.addressLine1 = addressLine1 || user.addressLine1;
     user.addressLine2 = addressLine2 || user.addressLine2;

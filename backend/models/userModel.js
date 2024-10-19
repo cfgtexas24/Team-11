@@ -105,8 +105,47 @@ const userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['user', 'admin', 'provider'],
+        enum: [
+            "Caucasian",
+            "African",
+            "Asian",
+            "Hispanic",
+            "Arab",
+            "Indigenous",
+            "Pacific Islander",
+            "Mixed Race"
+          ],
+          
         default: 'user',
+    },
+    ethnicity: {
+        type: String,
+        enum: [
+            "Hispanic or Latino",
+            "Non-Hispanic White",
+            "Black or African American",
+            "Asian",
+            "Native American or Alaska Native",
+            "Native Hawaiian or Other Pacific Islander",
+            "Middle Eastern or North African",
+            "Mixed Race",
+            "Other"
+          ],
+          default: null
+    },
+    race: {
+        type: String,
+        enum: [
+            "Caucasian",
+            "African",
+            "Asian",
+            "Hispanic",
+            "Arab",
+            "Indigenous",
+            "Pacific Islander",
+            "Mixed Race"
+          ],
+          default: null
     },
     homlessness:{
         type:Boolean,
