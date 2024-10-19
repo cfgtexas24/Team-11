@@ -1,15 +1,24 @@
 const mongoose = require('mongoose'); //to interact w mongodb
 //fields the user model will have
 const userSchema = mongoose.Schema({
-    name: {
+    firstName: {
         type: String,
-        required: [true, 'Please add a name'],
+        required: true,
+        //required: [true, 'Please add a name'],
+    },
+    lastName: {
+        type: String,
+        required: true,
+        //required: [true, 'Please add a name'],
+    },
+    middleInitial: {
+        type: String,
         default: null
     },
     email: {
         type: String,
         required: [true, 'Please add an email'],
-        default: null
+        unique: true
     },
     password: {
         type: String,
@@ -56,31 +65,26 @@ const userSchema = mongoose.Schema({
         required: false,
         default: null
     },
-    allergies: {
+    allergies: [{
         type: String,
-        required: false,
-        default: null
-    },
-    currentMedications: {
+        required: false
+    }],
+    currentMedications: [{
         type: String,
-        required: false,
-        default: null
-    },
-    previousMedication: {
+        required: false
+    }],
+    previousMedication: [{
         type: String,
-        required: false,
-        default: null
-    },
-    familyMedicalHistory: {
+        required: false
+    }],
+    familyMedicalHistory: [{
         type: String,
-        required: false,
-        default: null
-    },
-    previousMedicalProcedures: {
+        required: false
+    }],
+    previousMedicalProcedures: [{
         type: String,
-        required: false,
-        default: null
-    },
+        required: false
+    }],
     state: {
         type: String,
         required: false,
@@ -91,22 +95,30 @@ const userSchema = mongoose.Schema({
         required: false,
         default: null
     },
-      appointments: [{
+    appointments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Appointment', 
     }],
-        createdAt: {
-            type: Date,
-            default: Date.now,
-        },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
     role: {
         type: String,
         enum: ['user', 'admin', 'provider'],
         default: 'user',
     },
-    middleInitial: {
-        type: String,
-        default: null
+    homlessness:{
+        type:Boolean,
+        default: false
+    },
+    preeclampsia:{
+        type:Boolean,
+        default: false
+    },
+    postpartumdepression:{
+        type:Boolean,
+        default: false
     },
         
 },{
