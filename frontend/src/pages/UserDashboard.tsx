@@ -6,8 +6,9 @@ function UserDashboard() {
 
   return (
     <>
-      <div>
+      <div className="h-screen w-screen bg-blue-500">
         <p>Dashboard</p>
+
       </div>
     </>
   )
