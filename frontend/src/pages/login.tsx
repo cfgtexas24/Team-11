@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'; 
 import { Button } from "@/components/ui/button";
+import { LocationState } from '@/types';
 
 const Login = () => {
     const navigate = useNavigate(); // Initialize useNavigate
@@ -8,7 +9,7 @@ const Login = () => {
         event.preventDefault(); // Prevent form submission
         // Add your login logic here (e.g., API call to authenticate user)
         // If login is successful, navigate to the dashboard
-        navigate('/user-dashboard'); // Redirect to the dashboard
+        navigate('/User', { state: { role: "user" } as LocationState }); // Redirect to the dashboard
     };
 
     return (

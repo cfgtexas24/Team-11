@@ -6,7 +6,7 @@ function UserDashboard() {
   return (
     <>
       <div className="h-screen w-screen" style={{ backgroundColor: '#F7EFEE' }}>
-        <p>Dashboard</p>
+        <p>dashboard</p>
         <ViewAppointments/>
 
       </div>
