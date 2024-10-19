@@ -42,7 +42,7 @@ const setAppointment = asyncHandler(async (req, res) => {
 
 const getAppointments = asyncHandler(async (req, res) => {
     // Get user ID from the authenticated request
-    const userId = req.user._id;
+    const userId = req.params.userId;
 
     // Find the user and populate the appointments field with the actual appointment documents
     const userWithAppointments = await User.findById(userId).populate('appointments');

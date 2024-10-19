@@ -26,4 +26,4 @@ const appointmentModel = mongoose.Schema({
     timestamps: true //adds created at and updated at fields
 })
 
-module.exports = mongoose.model('appointments', appointmentModel)
+module.exports = mongoose.model('Appointment', appointmentModel)
