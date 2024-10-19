@@ -15,12 +15,12 @@ function AdminDashboard() {
         {/* Action buttons for 'Create' and 'Upload' */}
         <div className="flex gap-4">
           {/* Flexbox to align buttons horizontally with a gap between them */}
-          <button className="px-4 py-2 bg-teal-300 text-white font-semibold rounded-lg">
+          <button className="px-4 py-2 bg-[rgb(182,216,219)] text-white font-semibold rounded-lg">
             Create
           </button>
           {/* Button with padding, background color, white text, and rounded corners */}
           
-          <button className="px-4 py-2 bg-teal-400 text-white font-semibold rounded-lg">
+          <button className="px-4 py-2 bg-[rgb(182,216,219)] text-white font-semibold rounded-lg">
             Upload
           </button>
           {/* Similar button for 'Upload' with slightly different background color */}
@@ -34,7 +34,7 @@ function AdminDashboard() {
         {Array(4)
           .fill(0)
           .map((_, i) => (
-            <div key={i} className="bg-teal-300 p-6 rounded-lg text-center">
+            <div key={i} className="bg-[rgb(182,216,219)] p-6 rounded-lg text-center">
               {/* Each folder is represented by a card with padding, background color, rounded corners, and center-aligned text */}
               <h2 className="text-2xl font-bold">Folder Name</h2>
               <p className="mt-2 text-lg">23 Files</p>

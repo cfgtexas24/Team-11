@@ -23,12 +23,7 @@
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
-<<<<<<< HEAD
-=======
-    "cors": "^2.8.5",
     "framer-motion": "^11.11.9",
-    "date-fns": "^3.6.0",
->>>>>>> 4ae97d31b6a1ba09a8117ef1351f6d134dcb459d
     "lucide-react": "^0.453.0",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
