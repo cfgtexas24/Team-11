@@ -25,6 +25,29 @@ const AdminDashboard: React.FC = () => {
           ))}
       </div>
 
+      {/* Recent Files Section */}
+      <div className="recent">
+        <h2>Recent</h2>
+        <div className="recent-list">
+          <div className="recent-item">
+            <span>Patient_1_Report.pdf</span>
+            <span>10/18/2024</span>
+          </div>
+          <div className="recent-item">
+            <span>Patient_2_Report.pdf</span>
+            <span>10/12/2024</span>
+          </div>
+          <div className="recent-item">
+            <span>Patient_3_Report.pdf</span>
+            <span>10/01/2024</span>
+          </div>
+          <div className="recent-item">
+            <span>Patient_4_Report.pdf</span>
+            <span>10/09/2024</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 };
