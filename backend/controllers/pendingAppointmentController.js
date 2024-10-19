@@ -1,9 +1,28 @@
 const asyncHandler = require('express-async-handler');
-const Appointment = require('../models/appointmentModel');
+const Appointment = require('../models/pendingAppointmentModel');
 const User = require('../models/userModel');
 
 const setAppointment = asyncHandler(async (req, res) => {
-    const { clinicName, date, time, physician, type} = req.body;
+    const { clinicName, date, time, physician, type, valid } = req.body;
+
+    const appointment = await Appointment.create({
+        clinicName, 
+        date, 
+        time, 
+        physician, 
+        type, 
+        valid
+    })
+
+    // Send back the created user info
+    res.status(201).json({
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,  // Role-based info
+        createdAt: user.createdAt,
+    });
     
     const userId = req.user._id;
 
@@ -39,26 +58,16 @@ const setAppointment = asyncHandler(async (req, res) => {
 
 });
 
+const makeAppointment = asyncHandler(async (req, res) => {
+    const { clinicName, date, time, physician, type} = req.body;
+})
 
 
-const getAppointments = asyncHandler(async (req, res) => {
-    // Get user ID from the authenticated request
-    const userId = req.user._id;
 
-    // Find the user and populate the appointments field with the actual appointment documents
-    const userWithAppointments = await User.findById(userId).populate('appointments');
-
-    if (userWithAppointments) {
-        res.json(userWithAppointments.appointments);
-    } else {
-        res.status(404);
-        throw new Error('User not found');
-    }
-});
 
 
 
 
 module.exports = {
-    setAppointment, getAppointments
+    setAppointment
 };
