@@ -1,13 +1,19 @@
 import AdminNavbar from '@/components/AdminNavbar';
 import '../App.css';
 import { Search, Download } from "lucide-react"; // Importing icons from the lucide-react library
+import { useNavigate } from "react-router-dom";
+import DataTable from './DataTable';
 
 function AdminDashboard() {
+  const navigate = useNavigate(); // Initialize
+  const handleUserInventoryClick = () => {
+    navigate('./DataTable');
+  }
   return (
     <div className="grid grid-cols-2 gap-6 p-6 bg-[rgb(247,239,238)] rounded-xl">
       <AdminNavbar />
       {/* Main container: A grid with 2 columns, gap between elements, padding, background color, and rounded corners */}
-      
+
       {/* Header: Client Reports Section */}
       <div className="col-span-2 flex justify-between items-center">
         {/* Header section spans both columns, contains title and buttons */}
@@ -17,12 +23,12 @@ function AdminDashboard() {
         {/* Action buttons for 'Create' and 'Upload' */}
         <div className="flex gap-4">
           {/* Flexbox to align buttons horizontally with a gap between them */}
-          <button className="px-4 py-2 bg-teal-300 text-white font-semibold rounded-lg">
+          <button className="px-4 py-2 bg-[rgb(182,216,219)] text-white font-semibold rounded-lg">
             Create
           </button>
           {/* Button with padding, background color, white text, and rounded corners */}
           
-          <button className="px-4 py-2 bg-teal-400 text-white font-semibold rounded-lg">
+          <button className="px-4 py-2 bg-[rgb(182,216,219)] text-white font-semibold rounded-lg">
             Upload
           </button>
           {/* Similar button for 'Upload' with slightly different background color */}
@@ -32,11 +38,10 @@ function AdminDashboard() {
       {/* Folder section: Displaying folder information */}
       <div className="grid grid-cols-2 gap-6">
         {/* Another grid with 2 columns to display folder information */}
-        
         {Array(4)
           .fill(0)
           .map((_, i) => (
-            <div key={i} className="bg-teal-300 p-6 rounded-lg text-center">
+            <div key={i} className="bg-[rgb(182,216,219)] p-6 rounded-lg text-center">
               {/* Each folder is represented by a card with padding, background color, rounded corners, and center-aligned text */}
               <h2 className="text-2xl font-bold">Folder Name</h2>
               <p className="mt-2 text-lg">23 Files</p>
@@ -52,7 +57,6 @@ function AdminDashboard() {
         
         <div className="space-y-4">
           {/* Vertical spacing between list items */}
-          
           {/* List of recent files */}
           <div className="flex justify-between p-4 bg-white rounded-lg">
             {/* Flexbox to align filename and modification date horizontally, with padding, background color, and rounded corners */}
@@ -95,6 +99,14 @@ function AdminDashboard() {
         <Download className="absolute bottom-2 right-2 text-gray-600" />
         {/* Download icon placed at the bottom-right of the image */}
       </div>
+
+      {/* User Inventory Button */}
+      <button 
+        className="bg-[rgb(182,216,219)] text-black px-7 py-4 rounded-lg shadow"
+        onClick={handleUserInventoryClick} // Define this function for click handling
+      >
+        User Inventory
+      </button>
 
       {/* Comments Section */}
       <div className="col-span-2 flex flex-col">
