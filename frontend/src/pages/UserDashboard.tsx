@@ -1,9 +1,7 @@
-import { useState } from 'react'
 import '../App.css'
 import ViewAppointments from '@/components/ViewAppointments'
 
 function UserDashboard() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
