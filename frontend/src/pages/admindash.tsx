@@ -5,8 +5,11 @@ function AdminDashboard() {
   return (
     <div className="grid grid-cols-2 gap-6 p-6 bg-pink-100 rounded-xl">
       {/* Main container: A grid with 2 columns, gap between elements, padding, background color, and rounded corners */}
+      
       {/* Header: Client Reports Section */}
-      <div className="header">
+      <div className="col-span-2 flex justify-between items-center">
+        {/* Header section spans both columns, contains title and buttons */}
+        
         <h1>Client Reports</h1>
         <div className="buttons">
           <button className="btn create">Create</button>
