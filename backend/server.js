@@ -4,8 +4,8 @@ const express = require('express')
 const colors = require('colors')
 const connectDB = require('./config/db')
 const dotenv = require('dotenv').config()
-const port = process.env.PORT || 5000
-const {errorHandler} = require('./middleware/errorMiddleware')
+const port = process.env.PORT | 8000
+//const {errorHandler} = require('./middleware/errorMiddleware')
 
 connectDB() //connect to the database
 
@@ -16,6 +16,6 @@ app.use(express.urlencoded({extended: false})) //middleware to parse urlencoded 
 
 app.use('/api/users', require('./routes/userRoutes')) //use the goalRoutes.js file for any routes that start with /api/goals
 
-app.use(errorHandler) //use the error handler middleware and overwrite the default error handler
+//app.use(errorHandler) //use the error handler middleware and overwrite the default error handler
 
 app.listen(port, () => console.log(`Server is running on port ${port}`))

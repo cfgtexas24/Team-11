@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); //to interact w mongod
+const mongoose = require('mongoose'); //to interact w mongodb
 //fields the user model will have
 const userSchema = mongoose.Schema({
     name: {
@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Please add an email'],
-        unique: true
+        unique: true 
     },
     password: {
         type: String,
@@ -43,3 +43,5 @@ const userSchema = mongoose.Schema({
 },{
     timestamps: true //adds created at and updated at fields
 })
+
+module.exports = mongoose.model('users', userSchema)
