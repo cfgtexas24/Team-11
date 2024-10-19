@@ -94,6 +94,28 @@ function AdminDashboard() {
         {/* Download icon placed at the bottom-right of the image */}
       </div>
 
+      {/* User Inventory Section */}
+      <div className="col-span-2 bg-white p-6 rounded-lg">
+        <h2 className="text-2xl font-semibold mb-4">User Inventory</h2>
+        {/* Title of the User Inventory section */}
+        
+        <div className="grid grid-cols-3 gap-4">
+          {/* Displaying user inventory items in a 3-column grid with gaps between items */}
+          
+          {Array(6)
+            .fill(0)
+            .map((_, i) => (
+              <div key={i} className="p-4 bg-gray-100 rounded-lg shadow">
+                {/* Each inventory item is represented by a card with padding, background color, rounded corners, and shadow effect */}
+                <h3 className="text-lg font-bold">Item {i + 1}</h3>
+                <p className="text-sm mt-2">Description of item {i + 1}</p>
+                {/* Placeholder text for item name and description */}
+              </div>
+            ))}
+        </div>
+      </div>
+
+
       {/* Comments Section */}
       <div className="col-span-2 flex flex-col">
         {/* Section for comments input, spans both columns and arranged in a vertical flexbox */}
