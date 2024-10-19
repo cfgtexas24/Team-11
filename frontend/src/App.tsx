@@ -1,7 +1,11 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import UserInformationPage from './pages/UserInformationPage'; // Import the UserInformationPage component
-import { useState } from 'react';
+import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Login from './pages/login'
+import UserDashboard from './pages/UserDashboard'
+import User from './pages/User'
+import Navbar from './components/navbar'
+import { useState } from 'react'
+import UserInformationPage from './pages/UserInformationPage'
 
 // Adjust the initial user data to match the UserInformationPage interface
 const initialUserData = {
@@ -20,6 +24,8 @@ const initialUserData = {
   historyOfPreeclampsia: false,
   postpartumDepression: false,
 };
+
+
 
 function App() {
   const [editableUser, setEditableUser] = useState(initialUserData);
@@ -42,26 +48,30 @@ function App() {
     // Implement your update logic here (e.g., API call)
     console.log('User updated:', editableUser);
   };
-
+  
   return (
     <div>
     <BrowserRouter>
       <Navbar/>
       <Routes>
-        {/* Add the route for the User Information Page */}
-        <Route
-          path="/user-info"
-          element={
-            <UserInformationPage
-              editableUser={editableUser}
-              handleInputChange={handleInputChange}
-              handleUpdate={handleUpdate}
-            />
-          }
-        />
+        <Route path="/login" element={<Login />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path='/user' element={<User />}/>
+          <Route path="/" element={<Login />} />
+          <Route
+            path="/user-info"
+            element={
+              <UserInformationPage
+                editableUser={editableUser}
+                handleInputChange={handleInputChange}
+                handleUpdate={handleUpdate}
+              />
+            }
+          />
       </Routes>
     </BrowserRouter>
-  );
+    </div>
+  )
 }
 
-export default App;
+export default App
