@@ -1,5 +1,5 @@
 import * as React from "react"
-import '../App.css'
+import '../../App.css'
 import { Calendar } from "@/components/ui/calendar"
 
 function ViewAppointments() {
@@ -7,7 +7,7 @@ function ViewAppointments() {
 
   return (
     <>
-      <div className="justify-around w-1/2 h-auto md:w-1/2 md:h-1/2" style={{ backgroundColor: '#F0DCDA' }}>
+      <div className="justify-around rounded-lg shadow-md" style={{ backgroundColor: '#F0DCDA' }}>
         <div className="flex flex-row">
             <div className="text-left">
                 <h1>Your Appointments</h1>
