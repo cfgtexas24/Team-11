@@ -9,13 +9,6 @@ const loginUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
 
     console.log(req.body);
-    // Find user by email
-    // User.create({
-    //     name,
-    //     email,
-    //     password
-    // })
-    
 
     const user = await User.findOne({ email });
     
@@ -28,7 +21,7 @@ const loginUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            // role: user.role,  // Send back their role for role-based content
+            role: user.role,  // Send back their role for role-based content
         });
     } else {
         res.status(400);
