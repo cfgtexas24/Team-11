@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./UserInformationPage.css";
-import ClientNavbar from '@/components/ClientNavbar';
+import ClientNavbar from "@/components/ClientNavbar";
+import { useNavigate } from "react-router-dom";
 
 const UserInformationPage = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     lastName: "",
     firstName: "",
@@ -25,45 +28,67 @@ const UserInformationPage = () => {
     previousMedications: "",
     familyHistory: "",
     previousProcedures: "",
-    experiencedHomelessness: false, // Changed to boolean
-    historyOfPreeclampsia: false, // Changed to boolean
-    postpartumDepression: false, // Changed to boolean
+    experiencedHomelessness: false, 
+    historyOfPreeclampsia: false, 
+    postpartumDepression: false,
   });
+
+  const [userId, setUserId] = useState<string | null>(null);
+
+  // Retrieve user ID from localStorage when the component mounts
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    } else {
+      // If no userId is found in localStorage, navigate to login or handle error
+      console.error("No user ID found. Redirecting to login.");
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value, // Handle checkbox values for booleans
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // API call to your backend
+
+    if (!userId) {
+      alert("User ID not found. Please log in again.");
+      return;
+    }
+
     try {
-      const response = await fetch("/api/saveUserInformation", {
-        method: "POST",
+      const response = await fetch(`http://localhost:8000/api/updateUser/${userId}`, {
+        method: "PUT",  // PUT for updating existing data
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, userId }),  // Send form data with user ID
       });
-      const data = await response.json();
-      alert("Data saved successfully!");
+
+      if (response.ok) {
+        const data = await response.json();
+        alert("User information updated successfully!");
+        navigate("/profile");  // Redirect to profile page after successful update
+      } else {
+        console.error("Error updating data:", response.statusText);
+      }
     } catch (error) {
-      console.error("Error saving data:", error);
+      console.error("Error updating user data:", error);
     }
   };
 
   return (
     <div>
       <ClientNavbar />
-
       <form className="user-information-page" onSubmit={handleSubmit}>
-        <h1>Personal Information</h1>
-
-        {/* General Information Section */}
+        <h1>Update Personal Information</h1>
         <div className="section">
           <label>Last Name</label>
           <input name="lastName" value={formData.lastName} onChange={handleChange} />
@@ -106,8 +131,6 @@ const UserInformationPage = () => {
         </div>
 
         <h2>Medical History</h2>
-
-        {/* Medical History Section */}
         <div className="section">
           <label>Height</label>
           <input name="height" value={formData.height} onChange={handleChange} />
@@ -135,8 +158,6 @@ const UserInformationPage = () => {
         </div>
 
         <h3>Additional Information</h3>
-
-        {/* Additional Information Section */}
         <div className="section">
           <label>Experienced Homelessness</label>
           <input
@@ -166,7 +187,6 @@ const UserInformationPage = () => {
         <button type="submit">Save</button>
       </form>
     </div>
-
   );
 };
 
