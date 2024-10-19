@@ -34,10 +34,11 @@ const Login = () => {
                 else if (data.role === "admin") {
                     navigate('/admin-dashboard');
                 }
-                else if (data.role === "provider") {
+                else if (data.role === "provider"){
 
                 }
-            
+                // Navigate to user page with role passed in state
+                // navigate('/User', { state: { role: data.role } as LocationState });
             } else {
                 throw new Error(data.message || 'Invalid credentials');
             }
