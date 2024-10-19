@@ -1,18 +1,17 @@
 const mongoose = require('mongoose'); //to interact w mongod
 //fields the user model will have
 const pendingAppointmentModel = mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
     clinicName: {
         type: String,
         required: true,
     },
-    date: {
-        type: Date,
-        required: true,
-        default: () => new Date()
-    },
     time: {
         type: Date,  
-        required: true,
+        default: () => new Date()
     },
     physician: {
         type: String,

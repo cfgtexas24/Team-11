@@ -2,60 +2,35 @@ const asyncHandler = require('express-async-handler');
 const Appointment = require('../models/pendingAppointmentModel');
 const User = require('../models/userModel');
 
-const setAppointment = asyncHandler(async (req, res) => {
-    const { clinicName, date, time, physician, type, valid } = req.body;
+const setAppointmentPending = asyncHandler(async (req, res) => {
+    try {
+        const { userId, clinicName, date, time, physician, type, valid } = req.body;
 
-    const appointment = await Appointment.create({
-        clinicName, 
-        date, 
-        time, 
-        physician, 
-        type, 
-        valid
-    })
-
-    // Send back the created user info
-    res.status(201).json({
-        _id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        role: user.role,  // Role-based info
-        createdAt: user.createdAt,
-    });
-    
-    const userId = req.user._id;
-
-    if (!clinicName || !date || !time || !physician || !type) {
-        res.status(400);
-        throw new Error('Please fill in all required fields');
-    }
-
-    const appointment = await Appointment.create({
-        clinicName,
-        date,
-        time,
-        physician,
-        type,
-    });
-
-    const createdAppointment = await setAppointment.save();
-
-    const user = await User.findById(userId);
-    // If user exists, add the appointment to the user's appointments array
-    if (user) {
-        user.appointments.push(createdAppointment._id);
-        await user.save();  // Save the user with updated appointment reference
-
-        res.status(201).json({
-            message: 'Appointment successfully created and linked to user',
-            appointment: createdAppointment
+        // Create a new appointment
+        const appointment = await Appointment.create({
+            userId,
+            clinicName,
+            date,
+            time,
+            physician,
+            type,
+            valid
         });
-    } else {
-        res.status(404);
-        throw new Error('User not found');
-    }
 
+        // Send back the created appointment info including its ID
+        res.status(201).json({
+            _id: appointment._id,
+            userId: appointment.userId,
+            clinicName: appointment.clinicName,
+            time: appointment.time,
+            physician: appointment.physician,
+            type: appointment.type,
+            valid: appointment.valid
+        });
+    } catch (error) {
+        console.error("Error creating appointment:", error);
+        res.status(500).json({ message: 'Failed to create appointment' });
+    }
 });
 
 const makeAppointment = asyncHandler(async (req, res) => {
@@ -69,5 +44,5 @@ const makeAppointment = asyncHandler(async (req, res) => {
 
 
 module.exports = {
-    setAppointment
+    setAppointmentPending
 };
