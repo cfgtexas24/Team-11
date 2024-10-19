@@ -1,5 +1,6 @@
 import React from "react";
 import '../App.css'
+import { Search, Download } from "lucide-react";
 
 const AdminDashboard: React.FC = () => {
   return (
@@ -46,6 +47,17 @@ const AdminDashboard: React.FC = () => {
             <span>10/09/2024</span>
           </div>
         </div>
+      </div>
+
+      {/* File Preview Section */}
+      <div className="file-preview">
+        <Search className="search-icon" />
+        <img
+          src="https://via.placeholder.com/200"
+          alt="File Preview"
+          className="preview-image"
+        />
+        <Download className="download-icon" />
       </div>
 
     </div>
