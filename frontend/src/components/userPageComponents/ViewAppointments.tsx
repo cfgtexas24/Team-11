@@ -36,18 +36,18 @@ function ViewAppointments() {
             <div className="justify-around rounded-lg shadow-md" style={{ backgroundColor: '#F0DCDA' }}>
                 <div className="flex flex-row">
                     {/* Appointments List */}
-                    <div className="text-left w-1/3">
-                        <h1>Your Appointments</h1>
-                        <h3>Upcoming Appointments</h3>
+                    <div className="text-left w-1/2">
+                        <h1>Your Appointments:</h1>
+                        <h3>Upcoming Appointments:</h3>&nbsp;
                         <div>
                             {appointments.length > 0 ? (
                                 <ul>
                                     {appointments.map((appointment) => (
-                                      <div className="appointments">
+                                      <div className="bg-[#F7EFEE] rounded-xl ml-2">
                                         <li key={appointment._id} className="mb-2">
-                                            <strong>Clinic:</strong> {appointment.clinicName}<br />
-                                            <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}<br />
+                                            <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}&emsp;
                                             <strong>Time:</strong> {appointment.time}<br />
+                                            <strong>Clinic:</strong> {appointment.clinicName}<br />
                                             <strong>Physician:</strong> {appointment.physician}<br />
                                             <strong>Type:</strong> {appointment.type}
                                         </li>
