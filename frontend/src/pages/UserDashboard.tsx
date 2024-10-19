@@ -10,21 +10,21 @@ function UserDashboard() {
         <>
             <div className="h-screen w-screen" style={{ backgroundColor: '#F7EFEE' }}>
                 <div className="flex flex-wrap justify-between"> {/* Use flexbox for layout */}
-                    <div > {/* Set width and padding */}
+                    <div className="w-full md:w-1/2 p-2"> {/* Set width and padding */}
                         <ViewAppointments />
                     </div>
-                    <div > {/* Set width and padding */}
+                    <div className="w-full md:w-1/2 p-2"> {/* Set width and padding */}
                         <ScheduleAppointments />
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-between"> {/* New row for the remaining components */}
-                    <div> {/* Set width and padding */}
+                <div className="flex flex-wrap justify-between mt-4"> {/* New row for the remaining components */}
+                    <div className="w-full md:w-1/3 p-2"> {/* Set width and padding */}
                         <ViewLabReports />
                     </div>
-                    <div > {/* Set width and padding */}
+                    <div className="w-full md:w-1/3 p-2"> {/* Set width and padding */}
                         <EducationalServices />
                     </div>
-                    <div > {/* Set width and padding */}
+                    <div className="w-full md:w-1/3 p-2"> {/* Set width and padding */}
                         <Feedback />
                     </div>
                 </div>

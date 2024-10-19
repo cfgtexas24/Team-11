@@ -6,7 +6,7 @@ function EducationalServices() {
 
   return (
     <>
-      <div className="justify-around w-1/2 h-auto md:w-1/2 md:h-1/2 rounded-lg shadow-md" style={{ backgroundColor: '#B6D8DB' }}>
+      <div className="justify-around rounded-lg shadow-md" style={{ backgroundColor: '#B6D8DB' }}>
         <div className="flex flex-row">
             <div className="text-left">
                 <h1>Educational Services</h1>
