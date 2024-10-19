@@ -108,6 +108,15 @@ const userSchema = mongoose.Schema({
         enum: ['user', 'admin', 'provider'],
         default: 'user',
     },
+    homlessness:{
+        type:Boolean,
+    },
+    preeclampsia:{
+        type:Boolean,
+    },
+    postpartumdepression:{
+        type:Boolean,
+    },
         
 },{
     timestamps: true //adds created at and updated at fields
