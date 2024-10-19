@@ -16,7 +16,7 @@ function App() {
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/" element={<Login />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/user-data-table" element={<DataTable />} />
+          <Route path="/admin-dashboard/DataTable" element={<DataTable />} />
       </Routes>
     </BrowserRouter>
     </div>

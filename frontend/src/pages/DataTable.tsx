@@ -1,5 +1,6 @@
 import '../App.css'; // Ensure you have Tailwind set up in App.css
 import { useNavigate } from "react-router-dom";
+import User1Data from './User1Data';
 
 function DataTable() {
   const numberOfUsers = 30; // Set the desired number of user boxes here
@@ -28,6 +29,9 @@ function DataTable() {
           </div>
         ))}
       </div>
+
+      {/* Add the User1Data component here */}
+      <User1Data />
     </div>
   );
 }
