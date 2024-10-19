@@ -17,6 +17,7 @@ const LoginNavbar = () => {
 
   const handleLogout = () => {
     // Handle logout logic
+    navigate("/");
     console.log("Logged out");
     setDropdownVisible(false);
   };
