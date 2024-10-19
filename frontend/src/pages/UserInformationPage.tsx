@@ -1,92 +1,166 @@
-import React from 'react';
+import React, { useState } from "react";
+import "./UserInformationPage.css";
 
-interface User {
-  lastName: string;
-  firstName: string;
-  middleInitial: string;
-  dateOfBirth: string;
-  phone: string;
-  email: string;
-  addressLine1: string;
-  addressLine2: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  experiencedHomelessness: boolean;
-  historyOfPreeclampsia: boolean;
-  postpartumDepression: boolean;
-}
+const UserInformationPage = () => {
+  const [formData, setFormData] = useState({
+    lastName: "",
+    firstName: "",
+    middleInitial: "",
+    dob: "",
+    phone: "",
+    email: "",
+    addressLine1: "",
+    addressLine2: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    race: "",
+    ethnicity: "",
+    height: "",
+    weight: "",
+    pregnancies: "",
+    allergies: "",
+    currentMedications: "",
+    previousMedications: "",
+    familyHistory: "",
+    previousProcedures: "",
+    experiencedHomelessness: false, // Changed to boolean
+    historyOfPreeclampsia: false, // Changed to boolean
+    postpartumDepression: false, // Changed to boolean
+  });
 
-interface UserInformationPageProps {
-  editableUser: User | null;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleUpdate: () => void;
-}
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value, // Handle checkbox values for booleans
+    });
+  };
 
-const UserInformationPage: React.FC<UserInformationPageProps> = ({ editableUser, handleInputChange, handleUpdate }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // API call to your backend
+    try {
+      const response = await fetch("/api/saveUserInformation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      alert("Data saved successfully!");
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  };
+
   return (
-    <div className="w-full mx-auto p-8 bg-[#f7d9d5] rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-black mb-6">Personal Information</h2>
+    <form className="user-information-page" onSubmit={handleSubmit}>
+      <h1>Personal Information</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-        {[
-          { label: 'Last Name', name: 'lastName', type: 'text', value: editableUser?.lastName || '' },
-          { label: 'First Name', name: 'firstName', type: 'text', value: editableUser?.firstName || '' },
-          { label: 'Middle Initial', name: 'middleInitial', type: 'text', value: editableUser?.middleInitial || '' },
-          { label: 'Date of Birth', name: 'dateOfBirth', type: 'date', value: editableUser?.dateOfBirth || '' },
-          { label: 'Phone', name: 'phone', type: 'text', value: editableUser?.phone || '' },
-          { label: 'Email', name: 'email', type: 'text', value: editableUser?.email || '' },
-          { label: 'Address Line 1', name: 'addressLine1', type: 'text', value: editableUser?.addressLine1 || '' },
-          { label: 'Address Line 2', name: 'addressLine2', type: 'text', value: editableUser?.addressLine2 || '' },
-          { label: 'City', name: 'city', type: 'text', value: editableUser?.city || '' },
-          { label: 'State', name: 'state', type: 'text', value: editableUser?.state || '' },
-          { label: 'Zip Code', name: 'zipCode', type: 'text', value: editableUser?.zipCode || '' },
-        ].map(({ label, name, type, value }) => (
-          <div key={name} className="flex flex-col">
-            <label className="text-black mb-2" htmlFor={name}>{label}:</label>
-            <input
-              type={type}
-              id={name}
-              name={name}
-              value={value}
-              onChange={handleInputChange}
-              className="p-3 border border-gray-300 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-pink-600"
-            />
-          </div>
-        ))}
+      {/* General Information Section */}
+      <div className="section">
+        <label>Last Name</label>
+        <input name="lastName" value={formData.lastName} onChange={handleChange} />
+
+        <label>First Name</label>
+        <input name="firstName" value={formData.firstName} onChange={handleChange} />
+
+        <label>Middle Initial</label>
+        <input name="middleInitial" value={formData.middleInitial} onChange={handleChange} />
+
+        <label>Date of Birth</label>
+        <input name="dob" type="date" value={formData.dob} onChange={handleChange} />
+
+        <label>Phone</label>
+        <input name="phone" value={formData.phone} onChange={handleChange} />
+
+        <label>Email</label>
+        <input name="email" type="email" value={formData.email} onChange={handleChange} />
+
+        <label>Address Line 1</label>
+        <input name="addressLine1" value={formData.addressLine1} onChange={handleChange} />
+
+        <label>Address Line 2</label>
+        <input name="addressLine2" value={formData.addressLine2} onChange={handleChange} />
+
+        <label>City</label>
+        <input name="city" value={formData.city} onChange={handleChange} />
+
+        <label>State</label>
+        <input name="state" value={formData.state} onChange={handleChange} />
+
+        <label>Zip Code</label>
+        <input name="zipCode" value={formData.zipCode} onChange={handleChange} />
+
+        <label>Race</label>
+        <input name="race" value={formData.race} onChange={handleChange} />
+
+        <label>Ethnicity</label>
+        <input name="ethnicity" value={formData.ethnicity} onChange={handleChange} />
       </div>
+
+      <h2>Medical History</h2>
 
       {/* Medical History Section */}
-      <div className="lg:col-span-3 md:col-span-2 col-span-1 pt-6">
-        <h3 className="text-xl font-bold text-black mb-4">Medical History</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { label: 'Experienced Homelessness', name: 'experiencedHomelessness', value: editableUser?.experiencedHomelessness },
-            { label: 'History of Preeclampsia', name: 'historyOfPreeclampsia', value: editableUser?.historyOfPreeclampsia },
-            { label: 'Postpartum Depression', name: 'postpartumDepression', value: editableUser?.postpartumDepression },
-          ].map(({ label, name, value }) => (
-            <div key={name} className="flex items-center">
-              <input
-                type="checkbox"
-                id={name}
-                name={name}
-                checked={value || false}
-                onChange={handleInputChange}
-                className="mr-2 h-5 w-5 text-pink-600 focus:ring-pink-500"
-              />
-              <label htmlFor={name} className="text-black font-semibold">{label}</label>
-            </div>
-          ))}
-        </div>
+      <div className="section">
+        <label>Height</label>
+        <input name="height" value={formData.height} onChange={handleChange} />
+
+        <label>Weight</label>
+        <input name="weight" value={formData.weight} onChange={handleChange} />
+
+        <label># of Pregnancies</label>
+        <input name="pregnancies" value={formData.pregnancies} onChange={handleChange} />
+
+        <label>Allergies</label>
+        <input name="allergies" value={formData.allergies} onChange={handleChange} />
+
+        <label>Current Medications</label>
+        <input name="currentMedications" value={formData.currentMedications} onChange={handleChange} />
+
+        <label>Previous Medications</label>
+        <input name="previousMedications" value={formData.previousMedications} onChange={handleChange} />
+
+        <label>Family Medical History</label>
+        <input name="familyHistory" value={formData.familyHistory} onChange={handleChange} />
+
+        <label>Previous Medical Procedures</label>
+        <input name="previousProcedures" value={formData.previousProcedures} onChange={handleChange} />
       </div>
 
-      <button
-        onClick={handleUpdate}
-        className="w-full mt-6 p-3 bg-[#c2185b] text-white font-bold rounded-lg hover:bg-[#a01747] transition-all duration-200"
-      >
-        Save
-      </button>
-    </div>
+      <h3>Additional Information</h3>
+
+      {/* Additional Information Section */}
+      <div className="section">
+        <label>Experienced Homelessness</label>
+        <input
+          name="experiencedHomelessness"
+          type="checkbox"
+          checked={formData.experiencedHomelessness}
+          onChange={handleChange}
+        />
+
+        <label>History of Preeclampsia</label>
+        <input
+          name="historyOfPreeclampsia"
+          type="checkbox"
+          checked={formData.historyOfPreeclampsia}
+          onChange={handleChange}
+        />
+
+        <label>Postpartum Depression</label>
+        <input
+          name="postpartumDepression"
+          type="checkbox"
+          checked={formData.postpartumDepression}
+          onChange={handleChange}
+        />
+      </div>
+
+      <button type="submit">Save</button>
+    </form>
   );
 };
 
