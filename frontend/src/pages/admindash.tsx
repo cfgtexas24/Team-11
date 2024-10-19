@@ -100,7 +100,7 @@ function AdminDashboard() {
 
       {/* User Inventory Button */}
       <button 
-        className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow"
+        className="bg-[rgb(182,216,219)] text-black px-7 py-4 rounded-lg shadow"
         onClick={handleUserInventoryClick} // Define this function for click handling
       >
         User Inventory
