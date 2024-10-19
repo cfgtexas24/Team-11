@@ -110,12 +110,15 @@ const userSchema = mongoose.Schema({
     },
     homlessness:{
         type:Boolean,
+        default: false
     },
     preeclampsia:{
         type:Boolean,
+        default: false
     },
     postpartumdepression:{
         type:Boolean,
+        default: false
     },
         
 },{

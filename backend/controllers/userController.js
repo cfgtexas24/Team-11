@@ -63,7 +63,10 @@ const addUser = asyncHandler(async (req, res) => {
         previousMedicalProcedures,
         state,
         dateOfBirth,
-        role
+        role,
+        homelessness,
+        preeclampsia,
+        postpartumdepression
     } = req.body;
 
     console.log(req.body);
@@ -99,6 +102,9 @@ const addUser = asyncHandler(async (req, res) => {
         state,
         dateOfBirth,
         role,
+        homelessness,
+        preeclampsia,
+        postpartumdepression
     });
 
     // Send back the created user info
