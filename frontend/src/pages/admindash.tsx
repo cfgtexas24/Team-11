@@ -45,8 +45,12 @@ function AdminDashboard() {
       </div>
 
       {/* Recent Files Section */}
-      <div className="recent">
-        <h2>Recent</h2>
+      <h2 className="text-2xl font-semibold mb-4">Recent</h2>
+      {/* Section title with larger and bold font */}
+
+        <div className="space-y-4">
+          {/* Vertical spacing between list items */}
+          
         <div className="recent-list">
           <div className="recent-item">
             <span>Patient_1_Report.pdf</span>
