@@ -1,6 +1,7 @@
 import '../App.css'; // Ensure you have Tailwind set up in App.css
 import { useNavigate } from "react-router-dom";
 import User1Data from './User1Data';
+import User2Data from './User2Data';
 
 function DataTable() {
   const numberOfUsers = 30; // Set the desired number of user boxes here
@@ -14,11 +15,11 @@ function DataTable() {
 
 
   return (
-    <div className="p-6">
+    <div className="p-6 mt-20">
       <h1 className="text-3xl font-bold mb-6 text-center">User Data Table</h1>
 
       {/* User Inventory Section */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 lg:grid-cols-6 gap-6">
         {/* Displaying user inventory items in a 3-column grid with gaps between items */}
         {users.map((user) => (
           <div key={user.id} className="p-4 bg-gray-100 rounded-lg shadow hover:bg-gray-200 transition duration-200">
@@ -29,9 +30,13 @@ function DataTable() {
           </div>
         ))}
       </div>
-
+      <div className=' flex flex-col lg:flex-row items-center justify-center mt-6 gap-4'>
       {/* Add the User1Data component here */}
       <User1Data />
+
+      {/* Add the User2Data component here */}
+      <User2Data />
+      </div>
     </div>
   );
 }
