@@ -18,20 +18,20 @@ const ViewLabReports: React.FC = () => {
         <div className="flex flex-row">
           <div className="text-left">
             <h1 className="text-2xl mb-2 font-bold">View Lab Reports</h1>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
               <div 
                 onClick={() => handleDownload('lab_report_1.pdf')} 
                 style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
               >
                 Ultrasound Lab Results 07/30/2024
-                <IoIosDownload style={{ marginRight: '8px' }} />
-              </div>&nbsp;
+                <IoIosDownload style={{ marginRight: '8px'}} />
+              </div>
               <div 
                 onClick={() => handleDownload('lab_report_2.pdf')} 
                 style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
               >
                 Blood Count Sample Report 02/10/2014
-                <IoIosDownload style={{ marginRight: '8px' }} />
+                <IoIosDownload style={{ marginRight: '8px'}} />
               </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
           </div>
