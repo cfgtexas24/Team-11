@@ -19,10 +19,62 @@ const loginUser = asyncHandler(async (req, res) => {
         // Return the user's info without token
         res.json({
             _id: user._id,
-            name: user.name,
+            firstName: user.firstName,
+            //email: user.email,
+            //role: user.role,  // Send back their role for role-based content
+
+            lastName: user.lastName,
+            middleInitial: user.middleInitial,
             email: user.email,
-            role: user.role,  // Send back their role for role-based content
+            phone: user.phone,
+            addressLine1: user.addressLine1,
+            addressLine2: user.addressLine2,
+            city: user.city,
+            zipCode: user.zipCode,
+            height: user.height,
+            weight: user.weight,
+            numberPastPregnancies: user.numberPastPregnancies,
+            allergies: user.allergies,
+            currentMedications: user.currentMedications,
+            previousMedication: user.previousMedication,
+            familyMedicalHistory: user.familyMedicalHistory,
+            previousMedicalProcedures: user.previousMedicalProcedures,
+            state: user.state,
+            dateOfBirth: user.dateOfBirth,
+            role: user.role,
+            homelessness: user.homelessness,
+            preeclampsia: user.preeclampsia,
+            postpartumdepression: user.postpartumdepression
+
         });
+
+        localStorage.setItem('userInfo', {_id: user._id,
+            firstName: user.firstName,
+            //email: user.email,
+            //role: user.role,  // Send back their role for role-based content
+
+            lastName: user.lastName,
+            middleInitial: user.middleInitial,
+            email: user.email,
+            phone: user.phone,
+            addressLine1: user.addressLine1,
+            addressLine2: user.addressLine2,
+            city: user.city,
+            zipCode: user.zipCode,
+            height: user.height,
+            weight: user.weight,
+            numberPastPregnancies: user.numberPastPregnancies,
+            allergies: user.allergies,
+            currentMedications: user.currentMedications,
+            previousMedication: user.previousMedication,
+            familyMedicalHistory: user.familyMedicalHistory,
+            previousMedicalProcedures: user.previousMedicalProcedures,
+            state: user.state,
+            dateOfBirth: user.dateOfBirth,
+            role: user.role,
+            homelessness: user.homelessness,
+            preeclampsia: user.preeclampsia,
+            postpartumdepression: user.postpartumdepression})
     } else {
         res.status(400);
         throw new Error('Invalid credentials');
@@ -118,86 +170,51 @@ const addUser = asyncHandler(async (req, res) => {
     });
 });
 
-
-// Update user information by ID
 const updateUser = asyncHandler(async (req, res) => {
-    const { id } = req.params; // User ID from route parameters
-    const {
-        firstName,
-        lastName,
-        middleInitial,
-        email,
-        password, // Optional: only update if provided
-        phone,
-        addressLine1,
-        addressLine2,
-        city,
-        zipCode,
-        height,
-        weight,
-        numberPastPregnancies,
-        allergies,
-        currentMedications,
-        previousMedication,
-        familyMedicalHistory,
-        previousMedicalProcedures,
-        state,
-        dateOfBirth,
-        role,
-        homelessness,
-        preeclampsia,
-        postpartumdepression,
-    } = req.body; // Get updated data from the request body
+    const userId = req.params.id; // Assuming you're sending the user ID as a URL param
 
-    // Find the user by ID
-    const user = await User.findById(id);
+    // Fetch the existing user
+    const user = await User.findById(userId);
+
     if (!user) {
         res.status(404);
         throw new Error('User not found');
     }
 
-    // Update only the fields that are provided (keep others unchanged)
-    user.firstName = firstName || user.firstName;
-    user.lastName = lastName || user.lastName;
-    user.middleInitial = middleInitial || user.middleInitial;
-    user.email = email || user.email;
-    if (password) user.password = password; // Ensure password is hashed before storing
-    user.phone = phone || user.phone;
-    user.addressLine1 = addressLine1 || user.addressLine1;
-    user.addressLine2 = addressLine2 || user.addressLine2;
-    user.city = city || user.city;
-    user.zipCode = zipCode || user.zipCode;
-    user.height = height || user.height;
-    user.weight = weight || user.weight;
-    user.numberPastPregnancies = numberPastPregnancies || user.numberPastPregnancies;
-    user.allergies = allergies || user.allergies;
-    user.currentMedications = currentMedications || user.currentMedications;
-    user.previousMedication = previousMedication || user.previousMedication;
-    user.familyMedicalHistory = familyMedicalHistory || user.familyMedicalHistory;
-    user.previousMedicalProcedures = previousMedicalProcedures || user.previousMedicalProcedures;
-    user.state = state || user.state;
-    user.dateOfBirth = dateOfBirth || user.dateOfBirth;
-    user.role = role || user.role;
-    user.homelessness = homelessness || user.homelessness;
-    user.preeclampsia = preeclampsia || user.preeclampsia;
-    user.postpartumdepression = postpartumdepression || user.postpartumdepression;
+    // Update fields based on form data, if provided
+    user.firstName = req.body.firstName || user.firstName;
+    user.lastName = req.body.lastName || user.lastName;
+    user.middleInitial = req.body.middleInitial || user.middleInitial;
+    user.dateOfBirth = req.body.dob || user.dateOfBirth;
+    user.phone = req.body.phone || user.phone;
+    user.email = req.body.email || user.email;
+    user.addressLine1 = req.body.addressLine1 || user.addressLine1;
+    user.addressLine2 = req.body.addressLine2 || user.addressLine2;
+    user.city = req.body.city || user.city;
+    user.state = req.body.state || user.state;
+    user.zipCode = req.body.zipCode || user.zipCode;
+    user.height = req.body.height || user.height;
+    user.weight = req.body.weight || user.weight;
+    user.numberPastPregnancies = req.body.pregnancies || user.numberPastPregnancies;
+    user.allergies = req.body.allergies || user.allergies;
+    user.currentMedications = req.body.currentMedications || user.currentMedications;
+    user.previousMedication = req.body.previousMedications || user.previousMedication;
+    user.familyMedicalHistory = req.body.familyHistory || user.familyMedicalHistory;
+    user.previousMedicalProcedures = req.body.previousProcedures || user.previousMedicalProcedures;
+    user.homlessness = req.body.experiencedHomelessness || user.homlessness;
+    user.preeclampsia = req.body.historyOfPreeclampsia || user.preeclampsia;
+    user.postpartumdepression = req.body.postpartumDepression || user.postpartumdepression;
 
-    // Save updated user info
+    // Save the updated user back to the database
     const updatedUser = await user.save();
 
-    // Send updated user data
     res.status(200).json({
         _id: updatedUser._id,
         firstName: updatedUser.firstName,
         lastName: updatedUser.lastName,
         email: updatedUser.email,
         role: updatedUser.role,
-        updatedAt: updatedUser.updatedAt,
     });
 });
 
-
-
-module.exports = {
-    loginUser, getUsers, addUser, updateUser
-};
+module.exports = { loginUser, getUsers, addUser, updateUser };

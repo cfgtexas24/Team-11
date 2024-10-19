@@ -24,6 +24,7 @@ function ViewAppointments() {
                 .then((response) => response.json())
                 .then((data: Appointment[]) => {
                     setAppointments(data); // Set the appointments in state
+                    console.error('Successfully fetched appointments');
                 })
                 .catch((error) => {
                     console.error('Error fetching appointments:', error);
@@ -31,25 +32,58 @@ function ViewAppointments() {
         }
     }, []);
 
+    // Function to handle appointment deletion
+    const handleDelete = (appointmentId: string) => {
+        const userId = localStorage.getItem('userId');
+        if (userId) {
+            fetch(`http://localhost:8000/api/user/${userId}/appointments/${appointmentId}`, {
+                method: 'DELETE',
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        // Remove the deleted appointment from state
+                        setAppointments((prevAppointments) =>
+                            prevAppointments.filter((appointment) => appointment._id !== appointmentId)
+                        );
+                    } else {
+                        console.error('Failed to delete appointment');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error deleting appointment:', error);
+                });
+        }
+    };
+
     return (
         <>
-            <div className="justify-around rounded-lg shadow-md" style={{ backgroundColor: '#F0DCDA' }}>
+            <div className="justify-around rounded-lg shadow-md p-4 min-h[70%] h-full" style={{ backgroundColor: '#F0DCDA' }}>
                 <div className="flex flex-row">
                     {/* Appointments List */}
-                    <div className="text-left w-1/3">
-                        <h1>Your Appointments</h1>
-                        <h3>Upcoming Appointments</h3>
+                    <div className="text-left w-1/2">
+                        <h1 className=" text-2xl mb-2 font-bold">Your Appointments</h1>
+                        <h3 className=" font-semibold">Upcoming Appointments</h3>&nbsp;
                         <div>
                             {appointments.length > 0 ? (
                                 <ul>
                                     {appointments.map((appointment) => (
-                                        <li key={appointment._id} className="mb-2">
-                                            <strong>Clinic:</strong> {appointment.clinicName}<br />
-                                            <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}<br />
-                                            <strong>Time:</strong> {appointment.time}<br />
-                                            <strong>Physician:</strong> {appointment.physician}<br />
-                                            <strong>Type:</strong> {appointment.type}
-                                        </li>
+                                        <div className="bg-[#F7EFEE] rounded-xl ml-2 relative" key={appointment._id}>
+                                            {/* Delete button (X icon) */}
+                                            <button
+                                              onClick={() => handleDelete(appointment._id)}
+                                              className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                                              style={{ fontSize: '12px', padding: '2px', lineHeight: '1' }} // Smaller font size, padding, and line height
+                                          >
+                                              &times;
+                                          </button>
+                                            <li className="mb-2 p-4">
+                                                <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString()}&emsp;
+                                                <strong>Time:</strong> {appointment.time}<br />
+                                                <strong>Clinic:</strong> {appointment.clinicName}<br />
+                                                <strong>Physician:</strong> {appointment.physician}<br />
+                                                <strong>Type:</strong> {appointment.type}
+                                            </li>
+                                        </div>
                                     ))}
                                 </ul>
                             ) : (
@@ -59,12 +93,12 @@ function ViewAppointments() {
                     </div>
 
                     {/* Calendar */}
-                    <div>
+                    <div className="ml-auto">
                         <Calendar
                             mode="single"
                             selected={date}
                             onSelect={setDate}
-                            className="rounded-md border"
+                            className="rounded-md"
                         />
                     </div>
                 </div>

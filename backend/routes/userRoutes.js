@@ -6,8 +6,9 @@ const {loginUser, getUsers, addUser, updateUser} = require('../controllers/userC
 router.route('/login').post(loginUser)
 router.route('/add_user').post(addUser)
 router.route('/').get(getUsers)
-router.route('/:id').put(updateUser);  // <--- Update user info by ID
+router.route('/updateUser/:id').put(updateUser);  // <--- Update user info by ID
 //router.post('/users/makeAppointment').get(setAppointmentPending)
+
 
 module.exports = router
 

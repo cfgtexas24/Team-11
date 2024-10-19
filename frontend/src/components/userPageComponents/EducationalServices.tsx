@@ -23,14 +23,14 @@ function EducationalServices() {
 
     return (
         <>
-            <div className="justify-around rounded-lg shadow-md p-6" style={{ backgroundColor: '#B6D8DB' }}>
+            <div className="justify-around rounded-lg shadow-md p-4" style={{ backgroundColor: '#B6D8DB' }}>
                 <div className="text-left">
-                    <h1>Educational Services</h1>
+                    <h1 className="text-2xl mb-2 font-bold">Educational Services</h1>
                     <div>
-                        <h3>Upcoming Classes:</h3>
+                        <h3>Upcoming Classes:</h3>&nbsp;
                         <ul>
-                          <li>Saturday, November 2, "Intro to Birth" 10am - 12:30 PM AT 2612 MLK Jr. BLVD. Dallas, TX 75215</li>
-                          <li>Thursday, December 5th, "Intro to Birth" 6pm - 8:30 PM AT 2612 MLK Jr. BLVD. Dallas, TX 75215</li>
+                          <li>Saturday, November 2, "Intro to Birth" 10am - 12:30 PM AT 2612 MLK Jr. BLVD. Dallas, TX 75215</li>&nbsp;
+                          <li>Thursday, December 5th, "Intro to Birth" 6pm - 8:30 PM AT 2612 MLK Jr. BLVD. Dallas, TX 75215</li>&nbsp;
                           <li>Thursday, December 12th, "Postpartum and Newborn Care" 6pm - 7:30 PM AT 2612 MLK Jr. BLVD. Dallas, TX 75215</li>
                         </ul>
                     </div>

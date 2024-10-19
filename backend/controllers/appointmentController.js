@@ -55,9 +55,38 @@ const getAppointments = asyncHandler(async (req, res) => {
     }
 });
 
+//method to delete appointment
+const deleteAppointment = asyncHandler(async (req, res) => {
+    const { userId, id } = req.params;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+        res.status(404);
+        throw new Error('User not found');
+    }
+
+    // Find the appointment by ID
+    const appointment = await Appointment.findById(id);
+    if (!appointment) {
+        res.status(404);
+        throw new Error('Appointment not found');
+    }
+
+    // Remove the appointment from the user's appointments array
+    user.appointments = user.appointments.filter((a) => a.toString() !== id);
+    await user.save();
+
+    // // Remove the appointment from the Appointment collection
+    // await appointment.remove();
+
+    // Return a response after deletion
+    res.status(200).json({ message: 'Appointment successfully deleted' });
+});
+
 
 
 
 module.exports = {
-    setAppointment, getAppointments
+    setAppointment, getAppointments, deleteAppointment
 };

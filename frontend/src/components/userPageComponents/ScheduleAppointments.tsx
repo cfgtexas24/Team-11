@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Select, SelectItem, SelectTrigger, SelectContent, SelectValue } from "@/components/ui/select";
 
 const ScheduleAppointments: React.FC = () => {
     const [clinicName, setClinicName] = useState('');
@@ -33,7 +37,6 @@ const ScheduleAppointments: React.FC = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Add auth token or other headers if needed
                 },
                 body: JSON.stringify(appointmentData),
             });
@@ -47,7 +50,7 @@ const ScheduleAppointments: React.FC = () => {
             setSuccessMessage('Appointment successfully scheduled!');
             setError('');
 
-            // Optionally reset form fields after successful submission
+            // Reset form fields after successful submission
             setClinicName('');
             setDate('');
             setTime('');
@@ -61,63 +64,69 @@ const ScheduleAppointments: React.FC = () => {
     };
 
     return (
-        <div className="justify-around rounded-lg shadow-md" style={{ backgroundColor: '#B6D8DB' }}>
-            <h1>Schedule Your Appointment</h1>
+        <div className="text-left justify-around rounded-lg shadow-md p-4 min-h[100%]" style={{ backgroundColor: '#B6D8DB' }}>
+            <h1 className='text-2xl mb-2 font-bold'>Schedule Your Appointment</h1>&nbsp;
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="clinicName">Clinic Name:</label>
-                    <input
+                <div className="mb-4 flex items-center">
+                    <Label htmlFor="clinicName" className="w-1/4">Clinic Name:</Label>
+                    <Input
                         type="text"
                         id="clinicName"
                         value={clinicName}
                         onChange={(e) => setClinicName(e.target.value)}
                         required
+                        className="w-3/4"
                     />
                 </div>
-                <div>
-                    <label htmlFor="date">Date:</label>
-                    <input
+                <div className="mb-4 flex items-center">
+                    <Label htmlFor="date" className="w-1/4">Date:</Label>
+                    <Input
                         type="date"
                         id="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                         required
+                        className="w-3/4"
                     />
                 </div>
-                <div>
-                    <label htmlFor="time">Time:</label>
-                    <input
-                        type="string"
+                <div className="mb-4 flex items-center">
+                    <Label htmlFor="time" className="w-1/4">Time:</Label>
+                    <Input
+                        type="time"
                         id="time"
                         value={time}
                         onChange={(e) => setTime(e.target.value)}
                         required
+                        className="w-3/4"
                     />
                 </div>
-                <div>
-                    <label htmlFor="physician">Physician:</label>
-                    <input
+                <div className="mb-4 flex items-center">
+                    <Label htmlFor="physician" className="w-1/4">Physician:</Label>
+                    <Input
                         type="text"
                         id="physician"
                         value={physician}
                         onChange={(e) => setPhysician(e.target.value)}
                         required
+                        className="w-3/4"
                     />
                 </div>
-                <div>
-                    <label htmlFor="type">Type:</label>
-                    <select
-                        id="type"
-                        value={type}
-                        onChange={(e) => setType(e.target.value)}
-                        required
-                    >
-                        <option value="prenatal care">Prenatal Care</option>
-                        <option value="checkup">Checkup</option>
-                        <option value="follow-up">Follow-up</option>
-                    </select>
+                <div className="mb-4 flex items-center">
+                    <Label htmlFor="type" className="w-1/4">Type:</Label>
+                    <Select onValueChange={(value) => setType(value)} value={type}>
+                        <SelectTrigger className="w-3/4">
+                            <SelectValue placeholder="Select appointment type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="prenatal care">Prenatal Care</SelectItem>
+                            <SelectItem value="checkup">Checkup</SelectItem>
+                            <SelectItem value="follow-up">Follow-up</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
-                <button type="submit">Schedule Appointment</button>
+                <div className="flex justify-end">
+                    <Button type="submit">Schedule Appointment</Button>
+                </div>
             </form>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
