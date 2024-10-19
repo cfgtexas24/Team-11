@@ -40,6 +40,30 @@ const getUsers = asyncHandler(async (req, res) => {
     }
 });
 
+const addUser = asyncHandler(async (req, res) => {
+    const { name, email, password, phone, addressLine1, addressLine2, city, zipCode, height, weight, numberPastPregnancies, allergies, currentMedications, previousMedications, familyMedicalHistory, previousMedicalProcedures, state, dateOfBirth, role, middleIntial } = req.body;
+
+    console.log(req.body);
+
+    const user = await User.findOne({ email });
+    
+    console.log(user)
+
+    // If user exists and password matches
+    if (user) {
+        // Return the user's info without token
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,  // Send back their role for role-based content
+        });
+    } else {
+        res.status(400);
+        throw new Error('Invalid credentials');
+    }
+})
+
 module.exports = {
     loginUser, getUsers,
 };
