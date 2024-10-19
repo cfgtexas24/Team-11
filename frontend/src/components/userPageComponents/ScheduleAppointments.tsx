@@ -26,7 +26,7 @@ const ScheduleAppointments: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="justify-around rounded-lg shadow-md" style={{ backgroundColor: '#B6D8DB' }}>
             <h1>Schedule Your Appointment</h1>
             <form onSubmit={handleSubmit}>
                 <div>

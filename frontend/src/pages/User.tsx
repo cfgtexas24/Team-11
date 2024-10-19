@@ -12,6 +12,12 @@ function User() {
         if (role === "user") {
             navigate('/user-dashboard'); // Navigate to the user dashboard route
         }
+        else if (role === "admin"){
+
+        }
+        else if (role === "provider"){
+            
+        }
     }, [role, navigate]);
 
     return (
