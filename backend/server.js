@@ -18,9 +18,11 @@ const app = express() //initialize express
 // Enable CORS for the frontend running on localhost:5173
 app.use(cors({
     origin: 'http://localhost:5173',  // Allow only this origin
-    methods: ['GET', 'POST'],          // Specify allowed HTTP methods
+    methods: ['GET', 'POST', 'DELETE'],          // Specify allowed HTTP methods
     credentials: true,                 // Allow credentials if needed (optional)
 }));
+
+app.options('*', cors()); 
 
 app.use(express.json()) //middleware to parse json
 app.use(express.urlencoded({extended: false})) //middleware to parse urlencoded data
