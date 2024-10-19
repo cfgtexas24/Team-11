@@ -10,28 +10,62 @@ const ScheduleAppointments: React.FC = () => {
     const [time, setTime] = useState('');
     const [physician, setPhysician] = useState('');
     const [type, setType] = useState('prenatal care');
+    const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        // Handle form submission logic here
-        console.log({
+
+        const userId = localStorage.getItem('userId'); // Get the user ID from localStorage
+
+        if (!userId) {
+            setError('User is not logged in');
+            return;
+        }
+
+        // Prepare appointment data
+        const appointmentData = {
             clinicName,
-            date,
+            date: new Date(date).toISOString(),
             time,
             physician,
             type,
-        });
-        // Reset form fields
-        setClinicName('');
-        setDate('');
-        setTime('');
-        setPhysician('');
-        setType('prenatal care');
+        };
+
+        try {
+            const response = await fetch(`http://localhost:8000/api/user/${userId}/appointments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(appointmentData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Failed to create appointment');
+            }
+
+            setSuccessMessage('Appointment successfully scheduled!');
+            setError('');
+
+            // Reset form fields after successful submission
+            setClinicName('');
+            setDate('');
+            setTime('');
+            setPhysician('');
+            setType('prenatal care');
+
+        } catch (error: any) {
+            setError(error.message);
+            setSuccessMessage('');
+        }
     };
 
     return (
-        <div className="justify-around rounded-lg shadow-md p-6" style={{ backgroundColor: '#B6D8DB' }}>
-            <h1 className="text-xl mb-4">Schedule Your Appointment</h1>
+        <div className="text-left justify-around rounded-lg shadow-md p-4 min-h[100%]" style={{ backgroundColor: '#B6D8DB' }}>
+            <h1 className='text-2xl mb-2 font-bold'>Schedule Your Appointment</h1>&nbsp;
             <form onSubmit={handleSubmit}>
                 <div className="mb-4 flex items-center">
                     <Label htmlFor="clinicName" className="w-1/4">Clinic Name:</Label>
@@ -94,6 +128,8 @@ const ScheduleAppointments: React.FC = () => {
                     <Button type="submit">Schedule Appointment</Button>
                 </div>
             </form>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         </div>
     );
 };

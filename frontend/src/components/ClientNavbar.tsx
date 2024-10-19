@@ -10,34 +10,43 @@ const LoginNavbar = () => {
   // State to toggle the dropdown visibility
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  const handleLogin = () => {
-    navigate("/login"); // Navigate to the login page
-  };
-
   // Toggle the dropdown visibility
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
   const handleLogout = () => {
-    // Handle logout logic
-    console.log("Logged out");
+    navigate("/");
     setDropdownVisible(false);
+    console.log("Logged out");
   };
 
   const handlePersonalInfo = () => {
-    // Navigate to personal information page
     navigate("/user-info");
     setDropdownVisible(false);
+  };
+
+  // Function to navigate to home page when logo is clicked
+  const handleLogoClick = () => {
+    navigate("/user-dashboard"); // Navigate to the home page or any other page
   };
 
   return (
     <div>
       <header
-        className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 lg:px-24 z-30 border"
+        className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 lg:px-8 z-30 border"
         id="logo_address"
       >
-        <img src={abide_logo} alt="Abide Logo" width={160} height={80} />
+        {/* Logo that acts as a clickable element to navigate */}
+        <img
+          src={abide_logo}
+          alt="Abide Logo"
+          width={160}
+          height={80}
+          className="cursor-pointer" // Change cursor to pointer on hover
+          onClick={handleLogoClick} // Navigate to the home page on click
+        />
+
         <div className="relative"> {/* Wrap in a relative div to position the dropdown */}
           <Button
             className="bg-[#3A696E] w-28 flex items-center justify-center"
