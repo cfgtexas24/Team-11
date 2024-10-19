@@ -1,7 +1,6 @@
 import '../App.css'; // Ensure you have Tailwind set up in App.css
 import { useNavigate } from "react-router-dom";
 
-
 function DataTable() {
   const numberOfUsers = 30; // Set the desired number of user boxes here
   const users = Array.from({ length: numberOfUsers }, (_, i) => ({
