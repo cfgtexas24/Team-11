@@ -3,7 +3,7 @@ import { Search, Download } from "lucide-react"; // Importing icons from the luc
 
 function AdminDashboard() {
   return (
-    <div className="grid grid-cols-2 gap-6 p-6 bg-pink-100 rounded-xl">
+    <div className="grid grid-cols-2 gap-6 p-6 bg-[rgb(247,239,238)] rounded-xl">
       {/* Main container: A grid with 2 columns, gap between elements, padding, background color, and rounded corners */}
       
       {/* Header: Client Reports Section */}
