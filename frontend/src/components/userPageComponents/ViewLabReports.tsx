@@ -14,7 +14,7 @@ const ViewLabReports: React.FC = () => {
 
   return (
     <>
-      <div className="justify-around rounded-lg shadow-md h=300px" style={{ backgroundColor: '#F0DCDA' }}>
+      <div className="justify-around rounded-lg shadow-md h=300px p-4" style={{ backgroundColor: '#F0DCDA' }}>
         <div className="flex flex-row">
           <div className="text-left">
             <h1>View Lab Reports</h1>
@@ -25,14 +25,14 @@ const ViewLabReports: React.FC = () => {
               >
                 Ultrasound Lab Results 07/30/2024
                 <IoIosDownload style={{ marginRight: '8px' }} />
-              </div>
+              </div>&nbsp;
               <div 
                 onClick={() => handleDownload('lab_report_2.pdf')} 
                 style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
               >
                 Blood Count Sample Report 02/10/2014
                 <IoIosDownload style={{ marginRight: '8px' }} />
-              </div>
+              </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
           </div>
         </div>
