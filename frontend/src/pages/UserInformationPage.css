@@ -1,0 +1,85 @@
+body {
+  background-color: #F0DCDA !important; 
+  margin: 0; 
+  font-family: Arial, sans-serif; 
+}
+/* General styles for the user information form */
+.user-information-page {
+  max-width: 100%;
+  margin-top: 70px;
+  padding: 20px;
+  background-color: #F0DCDA;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+}
+
+/* Style for the h1 element */
+.user-information-page h1 {
+  font-size: 2.5rem; 
+  color: #333; 
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Style for the h2 element */
+.user-information-page h2 {
+  font-size: 1.75rem; 
+  color: #333; 
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Style for the h3 element */
+.user-information-page h3 {
+  font-size: 1.75rem;
+  color: #333; 
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 columns grid */
+  column-gap: 40px;
+  row-gap: 40px;
+  margin-bottom: 20px;
+}
+
+.section-full {
+  grid-template-columns: 3fr; /* For full-width sections */
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  grid-column: span 3; /* Span across three columns */
+}
+
+button:hover {
+  background-color: #005f5f;
+}
