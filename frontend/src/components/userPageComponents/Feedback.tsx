@@ -14,11 +14,11 @@ function Fedback() {
                     <form>
                         <div className=" justify-start">
                             <p className="text-left">Give us a rating!</p>
-                            <input type="email" id="email" name="email" placeholder="Email" className=" border w-80 p-1.5 rounded-md shadow-md" />
+                            <input type="email" id="email" name="email" placeholder="Email" className=" border w-[100%] p-1.5 rounded-md shadow-md" />
                         </div>
                         <div>
                             <p className="text-left"> Leave us comments! </p>
-                            <input type="password " id="password" name="password" placeholder="Password" className=" border w-80 p-1.5 rounded-md shadow-md" />
+                            <input type="password " id="password" name="password" placeholder="Any comments..." className=" border w-9/10 p-1.5 rounded-md shadow-md" />
                             </div>
                             <div>
                             <Button type="submit" className=" bg-[#3A696E] w-32 mt-8">Login</Button>
