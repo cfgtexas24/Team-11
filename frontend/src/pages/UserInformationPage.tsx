@@ -64,7 +64,7 @@ const UserInformationPage = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/api/updateUser/${userId}`, {
+      const response = await fetch(`/api/updateUser/${userId}`, {
         method: "PUT",  // PUT for updating existing data
         headers: {
           "Content-Type": "application/json",

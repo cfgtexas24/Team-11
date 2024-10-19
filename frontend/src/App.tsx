@@ -4,10 +4,13 @@ import Login from './pages/login'
 import UserDashboard from './pages/UserDashboard'
 import AdminDashboard from './pages/admindash'
 import ClientList from './pages/ClientList'
-import { useState } from 'react'
-import UserInformationPage from './pages/UserInformationPage'
+import { useState, useEffect } from 'react'
+import UserInformationPage from './pages/UserInformationPage';
+import ProviderUserInfo from './pages/ProviderUserInfo';
+// import ProviderUserInfo
 
-// Adjust the initial user data to match the UserInformationPage interface
+
+// Adjust the initial user data
 const initialUserData = {
   lastName: '',
   firstName: '',
@@ -25,21 +28,60 @@ const initialUserData = {
   postpartumDepression: false,
 };
 
-
-
 function App() {
   const [editableUser, setEditableUser] = useState(initialUserData);
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+  const [usersList, setUsersList] = useState<any[]>([]); // Fetching users from MongoDB
+
+  // Fetch users from MongoDB (API call)
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api'); // Replace with your API endpoint
+        const data = await response.json();
+        setUsersList(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  // Handle user selection from the dropdown
+  const handleUserSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const userId = parseInt(event.target.value, 10);
+    const selectedUser = usersList.find((user) => user._id === userId); // MongoDB uses _id
+    if (selectedUser) {
+      setEditableUser(selectedUser);
+      setSelectedUserId(userId);
+    }
+  };
+
+  // Fetch users from MongoDB (API call)
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('/api/users'); // Replace with your API endpoint
+        const data = await response.json();
+        setUsersList(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   // Function to handle input changes
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target;
-
-    // Handle checkbox inputs separately
     const newValue = type === 'checkbox' ? checked : value;
 
     setEditableUser(prevState => ({
       ...prevState,
-      [name]: newValue, // Use checked value for checkboxes
+      [name]: newValue,
+      [name]: newValue,
     }));
   };
 
@@ -49,6 +91,7 @@ function App() {
     console.log('User updated:', editableUser);
   };
   
+
   return (
     <div>
     <BrowserRouter>
@@ -68,10 +111,43 @@ function App() {
               />
             }
           />
+          <Route
+            path="/provider-user-info"
+            element={
+              <ProviderUserInfo
+                // editableUser={editableUser}
+                // handleInputChange={handleInputChange}
+                // handleUpdate={handleUpdate}
+                // handleUserSelect={handleUserSelect}
+                // usersList={usersList}
+                // selectedUserId={selectedUserId}
+                // editableUser={editableUser}
+                // handleInputChange={handleInputChange}
+                // handleUpdate={handleUpdate}
+              />
+            }
+          />
+          {/* <Route
+            path="/provider-user-info"
+            element={
+              <ProviderUserInfo
+                // editableUser={editableUser}
+                // handleInputChange={handleInputChange}
+                // handleUpdate={handleUpdate}
+                // handleUserSelect={handleUserSelect}
+                // usersList={usersList}
+                // selectedUserId={selectedUserId}
+                // editableUser={editableUser}
+                // handleInputChange={handleInputChange}
+                // handleUpdate={handleUpdate}
+              />
+            }
+          /> */}
+          
       </Routes>
     </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

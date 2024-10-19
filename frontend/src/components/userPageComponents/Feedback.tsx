@@ -13,10 +13,10 @@ function Feedback() {
 
   return (
     <>
-      <div className="justify-around rounded-lg shadow-md h-100 p-4" style={{ backgroundColor: '#F0DCDA' }}>
+      <div className="justify-around rounded-lg shadow-md h-full p-4" style={{ backgroundColor: '#F0DCDA' }}>
         <div className="flex flex-row">
           <div className="text-left pb-3 pt-3">
-            <h1>Feedback</h1>
+            <h1 className="text-2xl mb-2 font-bold">Feedback</h1>
             <div>
               <form>
                 {/* Star Rating Input */}
@@ -43,7 +43,7 @@ function Feedback() {
                     id="comments"
                     name="comments"
                     placeholder="Comments"
-                    className="border w-60 h-32 p-2 rounded-md shadow-md resize-none break-words whitespace-normal" // Added text wrapping
+                    className="border w-64 h-52 p-2 rounded-md shadow-md resize-none break-words whitespace-normal" // Added text wrapping
                   />
                 </div>
 
