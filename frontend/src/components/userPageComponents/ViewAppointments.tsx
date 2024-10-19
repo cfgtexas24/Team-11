@@ -37,8 +37,8 @@ function ViewAppointments() {
                 <div className="flex flex-row">
                     {/* Appointments List */}
                     <div className="text-left w-1/2">
-                        <h1>Your Appointments:</h1>
-                        <h3>Upcoming Appointments:</h3>&nbsp;
+                        <h1 className=" text-2xl mb-2 font-bold">Your Appointments</h1>
+                        <h3 className=" font-semibold">Upcoming Appointments</h3>&nbsp;
                         <div>
                             {appointments.length > 0 ? (
                                 <ul>

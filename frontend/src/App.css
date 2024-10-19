@@ -26,13 +26,13 @@ body {
   font-family: 'Poppins', sans-serif !important;
 }
 h1{
-  font-size: 3.8vh !important;
+  font-size: 25px !important;
 }
 h3{
-  font-size: 2.5vh !important;
+  font-size: 18px !important;
 }
 p{
-  font-size: 1.8vh !important;
+  font-size: 14px !important;
 }
 
 @keyframes logo-spin {

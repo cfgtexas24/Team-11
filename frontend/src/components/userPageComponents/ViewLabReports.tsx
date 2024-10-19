@@ -17,7 +17,7 @@ const ViewLabReports: React.FC = () => {
       <div className="justify-around rounded-lg shadow-md h=300px p-4" style={{ backgroundColor: '#F0DCDA' }}>
         <div className="flex flex-row">
           <div className="text-left">
-            <h1>View Lab Reports</h1>
+            <h1 className="text-2xl mb-2 font-bold">View Lab Reports</h1>
             <div>
               <div 
                 onClick={() => handleDownload('lab_report_1.pdf')} 

@@ -16,7 +16,7 @@ function Feedback() {
       <div className="justify-around rounded-lg shadow-md h-100 p-4" style={{ backgroundColor: '#F0DCDA' }}>
         <div className="flex flex-row">
           <div className="text-left pb-3 pt-3">
-            <h1>Feedback</h1>
+            <h1 className="text-2xl mb-2 font-bold">Feedback</h1>
             <div>
               <form>
                 {/* Star Rating Input */}
