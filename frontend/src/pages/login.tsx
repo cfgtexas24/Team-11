@@ -38,7 +38,7 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col gap-8 items-start">
+        <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-8">
                 <div>
                     <h1 className=" text-4xl font-bold">Login</h1>
