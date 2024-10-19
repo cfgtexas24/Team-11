@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'); //to interact w mongod
 //fields the user model will have
-const apointmentModel = mongoose.Schema({
+const appointmentModel = mongoose.Schema({
     clinicName: {
         type: String,
         required: true,
@@ -10,7 +10,7 @@ const apointmentModel = mongoose.Schema({
         required: true
     },
     time: {
-        type: Date,  
+        type: String,  
         required: true,
     },
     physician: {
