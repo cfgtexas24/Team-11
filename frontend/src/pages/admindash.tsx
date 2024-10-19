@@ -28,8 +28,10 @@ function AdminDashboard() {
         </div>
       </div>
 
-      {/* Folders Section */}
-      <div className="folders">
+      {/* Folder section: Displaying folder information */}
+      <div className="grid grid-cols-2 gap-6">
+        {/* Another grid with 2 columns to display folder information */}
+        
         {Array(4)
           .fill(0)
           .map((_, i) => (
