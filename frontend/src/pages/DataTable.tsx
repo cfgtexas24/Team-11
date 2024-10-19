@@ -1,10 +1,34 @@
-const DataTable = () => {
-    return (
-      <div>
-        <h1>User Data Table</h1>
-        {/* Your data table code goes here */}
+import '../App.css';
+import { useNavigate } from 'react-router-dom';
+
+function DataTable() {
+  const navigate = useNavigate();
+
+  const numberOfUsers = 30; // Set the desired number of user boxes here
+  const users = Array.from({ length: numberOfUsers }, (_, i) => ({
+    id: i + 1,
+    name: `User ${i + 1}`,
+    dataTable: `Personal Data Table ${i + 1}`,
+  }));
+
+  return (
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-4">User Data Table</h1>
+
+      {/* User Inventory Section */}
+      <div className="grid grid-cols-3 gap-4">
+        {/* Displaying user inventory items in a 3-column grid with gaps between items */}
+        {users.map((user) => (
+          <div key={user.id} className="p-4 bg-gray-100 rounded-lg shadow">
+            {/* Each inventory item is represented by a card with padding, background color, rounded corners, and shadow effect */}
+            <h3 className="text-lg font-bold">{user.name}</h3>
+            <p className="text-sm mt-2">{user.dataTable}</p>
+            {/* Placeholder text for item name and description */}
+          </div>
+        ))}
       </div>
-    );
-  };
-  
-  export default DataTable;
+    </div>
+  );
+}
+
+export default DataTable;
