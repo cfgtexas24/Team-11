@@ -2,6 +2,8 @@ import '../App.css'
 import ViewAppointments from '@/components/userPageComponents/ViewAppointments';
 import ScheduleAppointments from '@/components/userPageComponents/ScheduleAppointments';
 import ViewLabReports from '@/components/userPageComponents/ViewLabReports';
+import EducationalServices from '@/components/userPageComponents/EducationalServices';
+import Feedback from '@/components/userPageComponents/Feedback';
 
 function UserDashboard() {
 
@@ -17,6 +19,12 @@ function UserDashboard() {
         </div>
         <div>
           <ViewLabReports />
+        </div>
+        <div>
+          <EducationalServices />
+        </div>
+        <div>
+          <Feedback />
         </div>
       </div>
     </>
