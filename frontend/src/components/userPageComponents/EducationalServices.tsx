@@ -25,7 +25,7 @@ function EducationalServices() {
         <>
             <div className="justify-around rounded-lg shadow-md p-4" style={{ backgroundColor: '#B6D8DB' }}>
                 <div className="text-left">
-                    <h1>Educational Services</h1>
+                    <h1 className="text-2xl mb-2 font-bold">Educational Services</h1>
                     <div>
                         <h3>Upcoming Classes:</h3>&nbsp;
                         <ul>
