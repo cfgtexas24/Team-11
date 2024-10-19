@@ -12,10 +12,19 @@ function AdminDashboard() {
         
         <h1 className="text-3xl font-bold">Client Reports</h1>
          {/* Title with larger text and bold font */}
-         
-        <div className="buttons">
-          <button className="btn create">Create</button>
-          <button className="btn upload">Upload</button>
+
+         {/* Action buttons for 'Create' and 'Upload' */}
+         <div className="flex gap-4">
+          {/* Flexbox to align buttons horizontally with a gap between them */}
+          <button className="px-4 py-2 bg-teal-300 text-white font-semibold rounded-lg">
+            Create
+          </button>
+          {/* Button with padding, background color, white text, and rounded corners */}
+
+          <button className="px-4 py-2 bg-teal-400 text-white font-semibold rounded-lg">
+            Upload
+          </button>
+          {/* Similar button for 'Upload' with slightly different background color */}
         </div>
       </div>
 
