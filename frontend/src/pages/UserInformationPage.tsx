@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./UserInformationPage.css";
+import ClientNavbar from '@/components/ClientNavbar';
 
 const UserInformationPage = () => {
   const [formData, setFormData] = useState({
@@ -56,111 +57,116 @@ const UserInformationPage = () => {
   };
 
   return (
-    <form className="user-information-page" onSubmit={handleSubmit}>
-      <h1>Personal Information</h1>
+    <div>
+      <ClientNavbar />
 
-      {/* General Information Section */}
-      <div className="section">
-        <label>Last Name</label>
-        <input name="lastName" value={formData.lastName} onChange={handleChange} />
+      <form className="user-information-page" onSubmit={handleSubmit}>
+        <h1>Personal Information</h1>
 
-        <label>First Name</label>
-        <input name="firstName" value={formData.firstName} onChange={handleChange} />
+        {/* General Information Section */}
+        <div className="section">
+          <label>Last Name</label>
+          <input name="lastName" value={formData.lastName} onChange={handleChange} />
 
-        <label>Middle Initial</label>
-        <input name="middleInitial" value={formData.middleInitial} onChange={handleChange} />
+          <label>First Name</label>
+          <input name="firstName" value={formData.firstName} onChange={handleChange} />
 
-        <label>Date of Birth</label>
-        <input name="dob" type="date" value={formData.dob} onChange={handleChange} />
+          <label>Middle Initial</label>
+          <input name="middleInitial" value={formData.middleInitial} onChange={handleChange} />
 
-        <label>Phone</label>
-        <input name="phone" value={formData.phone} onChange={handleChange} />
+          <label>Date of Birth</label>
+          <input name="dob" type="date" value={formData.dob} onChange={handleChange} />
 
-        <label>Email</label>
-        <input name="email" type="email" value={formData.email} onChange={handleChange} />
+          <label>Phone</label>
+          <input name="phone" value={formData.phone} onChange={handleChange} />
 
-        <label>Address Line 1</label>
-        <input name="addressLine1" value={formData.addressLine1} onChange={handleChange} />
+          <label>Email</label>
+          <input name="email" type="email" value={formData.email} onChange={handleChange} />
 
-        <label>Address Line 2</label>
-        <input name="addressLine2" value={formData.addressLine2} onChange={handleChange} />
+          <label>Address Line 1</label>
+          <input name="addressLine1" value={formData.addressLine1} onChange={handleChange} />
 
-        <label>City</label>
-        <input name="city" value={formData.city} onChange={handleChange} />
+          <label>Address Line 2</label>
+          <input name="addressLine2" value={formData.addressLine2} onChange={handleChange} />
 
-        <label>State</label>
-        <input name="state" value={formData.state} onChange={handleChange} />
+          <label>City</label>
+          <input name="city" value={formData.city} onChange={handleChange} />
 
-        <label>Zip Code</label>
-        <input name="zipCode" value={formData.zipCode} onChange={handleChange} />
+          <label>State</label>
+          <input name="state" value={formData.state} onChange={handleChange} />
 
-        <label>Race</label>
-        <input name="race" value={formData.race} onChange={handleChange} />
+          <label>Zip Code</label>
+          <input name="zipCode" value={formData.zipCode} onChange={handleChange} />
 
-        <label>Ethnicity</label>
-        <input name="ethnicity" value={formData.ethnicity} onChange={handleChange} />
-      </div>
+          <label>Race</label>
+          <input name="race" value={formData.race} onChange={handleChange} />
 
-      <h2>Medical History</h2>
+          <label>Ethnicity</label>
+          <input name="ethnicity" value={formData.ethnicity} onChange={handleChange} />
+        </div>
 
-      {/* Medical History Section */}
-      <div className="section">
-        <label>Height</label>
-        <input name="height" value={formData.height} onChange={handleChange} />
+        <h2>Medical History</h2>
 
-        <label>Weight</label>
-        <input name="weight" value={formData.weight} onChange={handleChange} />
+        {/* Medical History Section */}
+        <div className="section">
+          <label>Height</label>
+          <input name="height" value={formData.height} onChange={handleChange} />
 
-        <label># of Pregnancies</label>
-        <input name="pregnancies" value={formData.pregnancies} onChange={handleChange} />
+          <label>Weight</label>
+          <input name="weight" value={formData.weight} onChange={handleChange} />
 
-        <label>Allergies</label>
-        <input name="allergies" value={formData.allergies} onChange={handleChange} />
+          <label># of Pregnancies</label>
+          <input name="pregnancies" value={formData.pregnancies} onChange={handleChange} />
 
-        <label>Current Medications</label>
-        <input name="currentMedications" value={formData.currentMedications} onChange={handleChange} />
+          <label>Allergies</label>
+          <input name="allergies" value={formData.allergies} onChange={handleChange} />
 
-        <label>Previous Medications</label>
-        <input name="previousMedications" value={formData.previousMedications} onChange={handleChange} />
+          <label>Current Medications</label>
+          <input name="currentMedications" value={formData.currentMedications} onChange={handleChange} />
 
-        <label>Family Medical History</label>
-        <input name="familyHistory" value={formData.familyHistory} onChange={handleChange} />
+          <label>Previous Medications</label>
+          <input name="previousMedications" value={formData.previousMedications} onChange={handleChange} />
 
-        <label>Previous Medical Procedures</label>
-        <input name="previousProcedures" value={formData.previousProcedures} onChange={handleChange} />
-      </div>
+          <label>Family Medical History</label>
+          <input name="familyHistory" value={formData.familyHistory} onChange={handleChange} />
 
-      <h3>Additional Information</h3>
+          <label>Previous Medical Procedures</label>
+          <input name="previousProcedures" value={formData.previousProcedures} onChange={handleChange} />
+        </div>
 
-      {/* Additional Information Section */}
-      <div className="section">
-        <label>Experienced Homelessness</label>
-        <input
-          name="experiencedHomelessness"
-          type="checkbox"
-          checked={formData.experiencedHomelessness}
-          onChange={handleChange}
-        />
+        <h3>Additional Information</h3>
 
-        <label>History of Preeclampsia</label>
-        <input
-          name="historyOfPreeclampsia"
-          type="checkbox"
-          checked={formData.historyOfPreeclampsia}
-          onChange={handleChange}
-        />
+        {/* Additional Information Section */}
+        <div className="section">
+          <label>Experienced Homelessness</label>
+          <input
+            name="experiencedHomelessness"
+            type="checkbox"
+            checked={formData.experiencedHomelessness}
+            onChange={handleChange}
+          />
 
-        <label>Postpartum Depression</label>
-        <input
-          name="postpartumDepression"
-          type="checkbox"
-          checked={formData.postpartumDepression}
-          onChange={handleChange}
-        />
-      </div>
+          <label>History of Preeclampsia</label>
+          <input
+            name="historyOfPreeclampsia"
+            type="checkbox"
+            checked={formData.historyOfPreeclampsia}
+            onChange={handleChange}
+          />
 
-      <button type="submit">Save</button>
-    </form>
+          <label>Postpartum Depression</label>
+          <input
+            name="postpartumDepression"
+            type="checkbox"
+            checked={formData.postpartumDepression}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit">Save</button>
+      </form>
+    </div>
+
   );
 };
 
