@@ -6,7 +6,7 @@ function Fedback() {
 
   return (
     <>
-      <div className="justify-around w-1/2 h-auto md:w-1/2 md:h-1/2" style={{ backgroundColor: '#F0DCDA' }}>
+      <div className="justify-around w-1/2 h-auto md:w-1/2 md:h-1/2 rounded-lg shadow-md" style={{ backgroundColor: '#F0DCDA' }}>
         <div className="flex flex-row">
             <div className="text-left">
                 <h1>Feedback</h1>
