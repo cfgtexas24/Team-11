@@ -3,8 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from './pages/login'
 import UserDashboard from './pages/UserDashboard'
 import AdminDashboard from './pages/admindash'
-import User from './pages/User'
-import Navbar from './components/navbar'
 import { useState } from 'react'
 import UserInformationPage from './pages/UserInformationPage'
 

@@ -27,7 +27,7 @@ const LoginNavbar = () => {
 
   const handlePersonalInfo = () => {
     // Navigate to personal information page
-    navigate("/personal-info");
+    navigate("/user-info");
     setDropdownVisible(false);
   };
 
