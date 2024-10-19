@@ -107,8 +107,8 @@ function AdminDashboard() {
             .map((_, i) => (
               <div key={i} className="p-4 bg-gray-100 rounded-lg shadow">
                 {/* Each inventory item is represented by a card with padding, background color, rounded corners, and shadow effect */}
-                <h3 className="text-lg font-bold">Item {i + 1}</h3>
-                <p className="text-sm mt-2">Description of item {i + 1}</p>
+                <h3 className="text-lg font-bold">User {i + 1}</h3>
+                <p className="text-sm mt-2">Personal Data Table {i + 1}</p>
                 {/* Placeholder text for item name and description */}
               </div>
             ))}
