@@ -2,6 +2,34 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import LoginNavbar from '@/components/LoginNavbar';
+import { disconnect } from 'process';
+
+
+type UserInfo = {
+    firstName: string;
+    lastName: string;
+    middleInitial?: string;
+    email: string;
+    phone: string;
+    addressLine1: string;
+    addressLine2?: string;
+    city: string;
+    zipCode: string;
+    height: number;
+    weight: number;
+    numberPastPregnancies: number;
+    allergies?: string;
+    currentMedications?: string;
+    previousMedication?: string;
+    familyMedicalHistory?: string;
+    previousMedicalProcedures?: string;
+    state: string;
+    dateOfBirth: string;
+    role: string;
+    homelessness: boolean;
+    preeclampsia: boolean;
+    postpartumdepression: boolean;
+  }
 
 const Login = () => {
     const navigate = useNavigate();
@@ -22,6 +50,37 @@ const Login = () => {
             });
             
             const data = await response.json();
+
+            const dict: UserInfo = {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                middleInitial: data.middleInitial,
+                email: data.email,
+                phone: data.phone,
+                addressLine1: data.addressLine1,
+                addressLine2: data.addressLine2,
+                city: data.city,
+                zipCode: data.zipCode,
+                height: data.height,
+                weight: data.weight,
+                numberPastPregnancies: data.numberPastPregnancies,
+                allergies: data.allergies,
+                currentMedications: data.currentMedications,
+                previousMedication: data.previousMedication,
+                familyMedicalHistory: data.familyMedicalHistory,
+                previousMedicalProcedures: data.previousMedicalProcedures,
+                state: data.state,
+                dateOfBirth: data.dateOfBirth,
+                role: data.role,
+                homelessness: data.homelessness,
+                preeclampsia: data.preeclampsia,
+                postpartumdepression: data.postpartumdepression
+
+            }
+
+
+            localStorage.setItem('userInfo', JSON.stringify(dict))
+
 
             if (response.ok) {
                 // Store _id in localStorage or sessionStorage for later use
