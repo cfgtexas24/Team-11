@@ -3,12 +3,12 @@ const mongoose = require('mongoose'); //to interact w mongodb
 const userSchema = mongoose.Schema({
     firstName: {
         type: String,
-        required: true,
+        required: false,
         //required: [true, 'Please add a name'],
     },
     lastName: {
         type: String,
-        required: true,
+        required: false,
         //required: [true, 'Please add a name'],
     },
     middleInitial: {

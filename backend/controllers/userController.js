@@ -31,7 +31,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({});
-
+    console.log(users)
     if (users) {
         res.status(200).json(users);
     } else {
@@ -118,9 +118,86 @@ const addUser = asyncHandler(async (req, res) => {
     });
 });
 
-module.exports = addUser;
+
+// Update user information by ID
+const updateUser = asyncHandler(async (req, res) => {
+    const { id } = req.params; // User ID from route parameters
+    const {
+        firstName,
+        lastName,
+        middleInitial,
+        email,
+        password, // Optional: only update if provided
+        phone,
+        addressLine1,
+        addressLine2,
+        city,
+        zipCode,
+        height,
+        weight,
+        numberPastPregnancies,
+        allergies,
+        currentMedications,
+        previousMedication,
+        familyMedicalHistory,
+        previousMedicalProcedures,
+        state,
+        dateOfBirth,
+        role,
+        homelessness,
+        preeclampsia,
+        postpartumdepression,
+    } = req.body; // Get updated data from the request body
+
+    // Find the user by ID
+    const user = await User.findById(id);
+    if (!user) {
+        res.status(404);
+        throw new Error('User not found');
+    }
+
+    // Update only the fields that are provided (keep others unchanged)
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
+    user.middleInitial = middleInitial || user.middleInitial;
+    user.email = email || user.email;
+    if (password) user.password = password; // Ensure password is hashed before storing
+    user.phone = phone || user.phone;
+    user.addressLine1 = addressLine1 || user.addressLine1;
+    user.addressLine2 = addressLine2 || user.addressLine2;
+    user.city = city || user.city;
+    user.zipCode = zipCode || user.zipCode;
+    user.height = height || user.height;
+    user.weight = weight || user.weight;
+    user.numberPastPregnancies = numberPastPregnancies || user.numberPastPregnancies;
+    user.allergies = allergies || user.allergies;
+    user.currentMedications = currentMedications || user.currentMedications;
+    user.previousMedication = previousMedication || user.previousMedication;
+    user.familyMedicalHistory = familyMedicalHistory || user.familyMedicalHistory;
+    user.previousMedicalProcedures = previousMedicalProcedures || user.previousMedicalProcedures;
+    user.state = state || user.state;
+    user.dateOfBirth = dateOfBirth || user.dateOfBirth;
+    user.role = role || user.role;
+    user.homelessness = homelessness || user.homelessness;
+    user.preeclampsia = preeclampsia || user.preeclampsia;
+    user.postpartumdepression = postpartumdepression || user.postpartumdepression;
+
+    // Save updated user info
+    const updatedUser = await user.save();
+
+    // Send updated user data
+    res.status(200).json({
+        _id: updatedUser._id,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        email: updatedUser.email,
+        role: updatedUser.role,
+        updatedAt: updatedUser.updatedAt,
+    });
+});
+
 
 
 module.exports = {
-    loginUser, getUsers, addUser
+    loginUser, getUsers, addUser, updateUser
 };
