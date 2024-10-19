@@ -4,11 +4,13 @@ import ScheduleAppointments from '@/components/userPageComponents/ScheduleAppoin
 import ViewLabReports from '@/components/userPageComponents/ViewLabReports';
 import EducationalServices from '@/components/userPageComponents/EducationalServices';
 import Feedback from '@/components/userPageComponents/Feedback';
+import AdminNavbar from '@/components/AdminNavbar';
 
-function UserInventory() {
+function ClientList() {
     return (
         <>
             <div className="grid grid-cols-2 gap-6 p-6 bg-[rgb(247,239,238)] rounded-xl">
+                <AdminNavbar />
                 <div className="flex flex-wrap justify-between"> 
                     <div className="w-full h-full md:w-1/2 p-2 flex-grow"> 
                         <ViewAppointments />
@@ -33,4 +35,4 @@ function UserInventory() {
     );
 }
 
-export default UserInventory;
+export default ClientList;

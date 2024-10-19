@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from './pages/login'
 import UserDashboard from './pages/UserDashboard'
 import AdminDashboard from './pages/admindash'
+import ClientList from './pages/ClientList'
 import { useState } from 'react'
 import UserInformationPage from './pages/UserInformationPage'
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/" element={<Login />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/client-list" element={<ClientList />} />
           <Route
             path="/user-info"
             element={

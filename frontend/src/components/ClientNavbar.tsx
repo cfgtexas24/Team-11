@@ -10,10 +10,6 @@ const LoginNavbar = () => {
   // State to toggle the dropdown visibility
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  const handleLogin = () => {
-    navigate("/login"); // Navigate to the login page
-  };
-
   // Toggle the dropdown visibility
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
