@@ -1,17 +1,17 @@
 const mongoose = require('mongoose'); //to interact w mongod
 //fields the user model will have
-const apointmentModel = mongoose.Schema({
+const pendingAppointmentModel = mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
     clinicName: {
         type: String,
         required: true,
     },
-    date: {
-        type: Date,
-        required: true
-    },
     time: {
         type: Date,  
-        required: true,
+        default: () => new Date()
     },
     physician: {
         type: String,
@@ -22,8 +22,12 @@ const apointmentModel = mongoose.Schema({
         enum: ['prenatal care', 'checkup', 'follow-up'], // Dropdown options
         required: true,
     },
+    status: {
+        type: Boolean,
+        default: false
+    }
 },{
     timestamps: true //adds created at and updated at fields
 })
 
-module.exports = mongoose.model('appointments', appointmentModel)
+module.exports = mongoose.model('pendingAppointment', pendingAppointmentModel)

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { LocationState } from '@/types';
+import LoginNavbar from '@/components/LoginNavbar';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -28,7 +28,17 @@ const Login = () => {
                 localStorage.setItem('userId', data._id);
                 localStorage.setItem('role', data.role);
                 // Navigate to user page with role passed in state
-                navigate('/User', { state: { role: data.role } as LocationState });
+                if (data.role === "user") {
+                    navigate('/user-dashboard');
+                }
+                else if (data.role === "admin") {
+                    navigate('/admin-dashboard');
+                }
+                else if (data.role === "provider"){
+
+                }
+                // Navigate to user page with role passed in state
+                // navigate('/User', { state: { role: data.role } as LocationState });
             } else {
                 throw new Error(data.message || 'Invalid credentials');
             }
@@ -38,7 +48,8 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col gap-8 items-start">
+        <div className="flex flex-col gap-8">
+            <LoginNavbar />
             <div className="flex flex-col gap-8">
                 <div>
                     <h1 className=" text-4xl font-bold">Login</h1>
