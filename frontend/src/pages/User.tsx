@@ -1,20 +1,30 @@
-// import '../App.css'
-// import ViewAppointments from '@/components/ViewAppointments'
+import { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import '../App.css';
+import { LocationState } from '@/types';
 
-// function User({role}) {
+function User() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { role } = location.state as LocationState;
 
-//   return (
-//     <>
-//       {role === "user" ? (  // Conditional rendering using ternary operator
-//         <div className="h-screen w-screen" style={{ backgroundColor: '#F7EFEE' }}>
-//           <p>Dashboard</p>
-//           <ViewAppointments />
-//         </div>
-//       ) : (
-//         <p>You are not logged in.</p>  // Fallback content when condition is false
-//       )}
-//     </>
-//   )
-// }
+    useEffect(() => {
+        if (role === "user") {
+            navigate('/user-dashboard'); // Navigate to the user dashboard route
+        }
+        else if (role === "admin"){
 
-// export default User
+        }
+        else if (role === "provider"){
+            
+        }
+    }, [role, navigate]);
+
+    return (
+        <>
+            {role !== "user" && <p>You are not logged in.</p>}  {/* Fallback content when not logged in */}
+        </>
+    );
+}
+
+export default User;
