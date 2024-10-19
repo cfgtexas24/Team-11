@@ -364,8 +364,7 @@ const [formData, setFormData] = useState({
       
       
     
-      {
-      if(){
+      
       <div className="section">
         <label>Last Name</label>
         <input name="lastName" value={formData.lastName} onChange={handleChange} />
@@ -466,7 +465,7 @@ const [formData, setFormData] = useState({
       </div>
 
       <button type="submit">Save</button>
-    </form>}}
+    </form>
   );
 };
 
