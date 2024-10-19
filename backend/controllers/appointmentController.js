@@ -4,15 +4,14 @@ const User = require('../models/userModel');
 
 const setAppointment = asyncHandler(async (req, res) => {
     const { clinicName, date, time, physician, type } = req.body;
-    
-    const userId = req.user._id;
+    const userId = req.params.userId; // Get userId from URL params
 
     if (!clinicName || !date || !time || !physician || !type) {
         res.status(400);
         throw new Error('Please fill in all required fields');
     }
-
-    const appointment = await Appointment.create({
+    // Create the appointment
+    const appointment = new Appointment({
         clinicName,
         date,
         time,
@@ -20,17 +19,17 @@ const setAppointment = asyncHandler(async (req, res) => {
         type,
     });
 
-    const createdAppointment = await setAppointment.save();
+    const createdAppointment = await appointment.save();
 
+    // Find the user and add the appointment
     const user = await User.findById(userId);
-    // If user exists, add the appointment to the user's appointments array
     if (user) {
         user.appointments.push(createdAppointment._id);
-        await user.save();  // Save the user with updated appointment reference
+        await user.save();
 
         res.status(201).json({
             message: 'Appointment successfully created and linked to user',
-            appointment: createdAppointment
+            appointment: createdAppointment,
         });
     } else {
         res.status(404);
@@ -39,9 +38,11 @@ const setAppointment = asyncHandler(async (req, res) => {
 
 });
 
+
+
 const getAppointments = asyncHandler(async (req, res) => {
     // Get user ID from the authenticated request
-    const userId = req.user._id;
+    const userId = req.params.userId;
 
     // Find the user and populate the appointments field with the actual appointment documents
     const userWithAppointments = await User.findById(userId).populate('appointments');
